@@ -13,4 +13,8 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="saudacao">Olá, %1$s 🌿</string>
+    <string name="produto_adicionado">%1$s adicionado ao carrinho!</string>
+    <string name="usando_dados_locais">Usando dados locais</string>
+    <string name="boas_vindas_catalogo">🌿 Bem-vindo à Pura Essência</string>
 </resources>

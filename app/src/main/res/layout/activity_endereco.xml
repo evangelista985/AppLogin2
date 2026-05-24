@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7F2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#023804"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <ImageButton
+                android:id="@+id/btnVoltar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_seta_voltar"
+                android:contentDescription="Voltar" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="📦 Endereço de Entrega"
+                android:textColor="#FFFDD0"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Card endereço do cadastro -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="#FFFDD0">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usar endereço do cadastro"
+                    android:textColor="#023804"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgEndereco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rbEnderecoCadastro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Usar endereço do meu cadastro"
+                        android:textColor="#444"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/rbNovoEndereco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Informar novo endereço"
+                        android:textColor="#444"
+                        android:textSize="14sp" />
+                </RadioGroup>
+
+                <!-- Endereço do cadastro -->
+                <LinearLayout
+                    android:id="@+id/layoutEnderecoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#E8F5E9"
+                    android:padding="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvEnderecoCadastro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CEP: -\nRua: -\nNúmero: -"
+                        android:textColor="#023804"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+
+                <!-- Novo endereço -->
+                <LinearLayout
+                    android:id="@+id/layoutNovoEndereco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/etCep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CEP (somente números)"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:padding="12dp"
+                        android:background="@drawable/fundo_input_branco"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etNumero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="Número"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:background="@drawable/fundo_input_branco"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etComplemento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="Complemento (opcional)"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:background="@drawable/fundo_input_branco"
+                        android:textSize="14sp" />
+
+                    <!-- Endereço encontrado via CEP -->
+                    <TextView
+                        android:id="@+id/tvEnderecoEncontrado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="#E8F5E9"
+                        android:padding="10dp"
+                        android:text=""
+                        android:textColor="#023804"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <!-- Botão Calcular Frete -->
+                <Button
+                    android:id="@+id/btnCalcularFrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#5D8A3E"
+                    android:text="Calcular Frete"
+                    android:textColor="#FFFDD0"
+                    android:textSize="14sp"
+                    app:cornerRadius="10dp" />
+
+                <!-- Resultado do frete -->
+                <TextView
+                    android:id="@+id/tvFrete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=""
+                    android:textColor="#023804"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Botão Prosseguir Pagamento -->
+        <Button
+            android:id="@+id/btnProsseguirPagamento"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_margin="12dp"
+            android:backgroundTint="#023804"
+            android:text="Prosseguir para Pagamento →"
+            android:textColor="#FFFDD0"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
+</ScrollView>
