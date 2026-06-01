@@ -1,3 +1,4 @@
+@file:Suppress("SpellCheckingInspection")
 package com.example.applogintest
 
 import android.os.Bundle
@@ -6,7 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.applogintest.model.Usuario
+import com.example.applogintest.model.CadastroRequest
 import com.example.applogintest.network.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,13 +28,6 @@ class CadastroActivity : AppCompatActivity() {
         val etEmail     = findViewById<EditText>(R.id.editTextEmail)
         val etTelefone  = findViewById<EditText>(R.id.editTextTelefone)
         val etSenha     = findViewById<EditText>(R.id.editTextSenha)
-        val etCpf       = findViewById<EditText>(R.id.editTextCpf)
-        val etCep       = findViewById<EditText>(R.id.editTextCep)
-        val etEndereco  = findViewById<EditText>(R.id.editTextEndereco)
-        val etNumero    = findViewById<EditText>(R.id.editTextNumero)
-        val etBairro    = findViewById<EditText>(R.id.editTextBairro)
-        val etCidade    = findViewById<EditText>(R.id.editTextCidade)
-        val etEstado    = findViewById<EditText>(R.id.editTextEstado)
         val btnCadastro = findViewById<Button>(R.id.btnCadastro)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
@@ -51,40 +45,35 @@ class CadastroActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val usuario = Usuario(
-                nome     = nome,
-                email    = email,
-                telefone = etTelefone.text.toString().trim(),
-                senha    = senha,
-                cpf      = etCpf.text.toString().trim(),
-                cep      = etCep.text.toString().trim(),
-                endereco = etEndereco.text.toString().trim(),
-                numero   = etNumero.text.toString().trim(),
-                bairro   = etBairro.text.toString().trim(),
-                cidade   = etCidade.text.toString().trim(),
-                estado   = etEstado.text.toString().trim()
-            )
-
             progressBar.visibility = View.VISIBLE
             btnCadastro.isEnabled  = false
 
-            ApiClient.instance.cadastrar(usuario).enqueue(object : Callback<Usuario> {
-                override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-                    progressBar.visibility = View.GONE
-                    btnCadastro.isEnabled  = true
-                    if (response.isSuccessful) {
-                        Toast.makeText(this@CadastroActivity, "Cadastro realizado! Faça login.", Toast.LENGTH_LONG).show()
-                        finish()
-                    } else {
-                        Toast.makeText(this@CadastroActivity, "Erro ao cadastrar: ${response.message()}", Toast.LENGTH_SHORT).show()
+            val request = CadastroRequest(
+                nome     = nome,
+                email    = email,
+                senha    = senha,
+                telefone = etTelefone.text.toString().trim().ifEmpty { null }
+            )
+
+            ApiClient.instance.cadastrar(request)
+                .enqueue(object : Callback<Map<String, String>> {
+                    override fun onResponse(call: Call<Map<String, String>>, response: Response<Map<String, String>>) {
+                        progressBar.visibility = View.GONE
+                        btnCadastro.isEnabled  = true
+                        if (response.isSuccessful) {
+                            Toast.makeText(this@CadastroActivity, "Cadastro realizado! Faça login.", Toast.LENGTH_LONG).show()
+                            finish()
+                        } else {
+                            val erro = response.errorBody()?.string() ?: "Erro ao cadastrar"
+                            Toast.makeText(this@CadastroActivity, erro, Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
-                override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                    progressBar.visibility = View.GONE
-                    btnCadastro.isEnabled  = true
-                    Toast.makeText(this@CadastroActivity, "Falha na rede: ${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
+                    override fun onFailure(call: Call<Map<String, String>>, t: Throwable) {
+                        progressBar.visibility = View.GONE
+                        btnCadastro.isEnabled  = true
+                        Toast.makeText(this@CadastroActivity, "Falha na rede: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
         }
     }
 }

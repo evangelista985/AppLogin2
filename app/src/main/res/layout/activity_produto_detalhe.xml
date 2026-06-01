@@ -1,204 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7F2">
+    android:orientation="vertical"
+    android:background="#F5F7F2"
+    android:fitsSystemWindows="true">
 
+    <!-- Header fixo -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="#023804"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
 
-        <!-- Header -->
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_seta_voltar"
+            android:contentDescription="Voltar" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Detalhes do Produto"
+            android:textColor="#FFFDD0"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Conteúdo com scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#023804"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:gravity="center_vertical">
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btnVoltar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_seta_voltar"
+            <!-- Foto grande -->
+            <ImageView
+                android:id="@+id/imgProdutoDetalhe"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="centerCrop" />
 
-                android:contentDescription="Voltar" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="Detalhes do Produto"
-                android:textColor="#FFFDD0"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <!-- Foto grande -->
-        <ImageView
-            android:id="@+id/imgProdutoDetalhe"
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="centerCrop" />
-
-        <!-- Card com informações -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
+            <!-- Card com informações -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFDD0">
-
-                <!-- Categoria -->
-                <TextView
-                    android:id="@+id/tvDetalheCategoria"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#E8F5E9"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp"
-                    android:text="Categoria"
-                    android:textColor="#023804"
-                    android:textSize="12sp" />
-
-                <!-- Nome -->
-                <TextView
-                    android:id="@+id/tvDetalheNome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Nome do Produto"
-                    android:textColor="#1A1A1A"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <!-- Preço -->
-                <TextView
-                    android:id="@+id/tvDetalhePreco"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="R$ 0,00"
-                    android:textColor="#023804"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <!-- Divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="#D0D0D0" />
-
-                <!-- Descrição -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Descrição"
-                    android:textColor="#023804"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvDetalheDescricao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Descrição completa do produto aqui."
-                    android:textColor="#444444"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="4dp" />
-
-                <!-- Divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="#D0D0D0" />
-
-                <!-- Seletor de quantidade -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Quantidade"
-                    android:textColor="#023804"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                android:layout_margin="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="#FFFDD0">
 
-                    <Button
-                        android:id="@+id/btnMenos"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="−"
-                        android:textSize="20sp"
-                        android:backgroundTint="#5D8A3E"
-                        android:textColor="#FFFFFF"
-                        android:padding="0dp"
-                        app:cornerRadius="20dp" />
+                    <!-- Categoria -->
+                    <TextView
+                        android:id="@+id/tvDetalheCategoria"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#E8F5E9"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:text="Categoria"
+                        android:textColor="#023804"
+                        android:textSize="12sp" />
+
+                    <!-- Nome -->
+                    <TextView
+                        android:id="@+id/tvDetalheNome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Nome do Produto"
+                        android:textColor="#1A1A1A"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <!-- Preço -->
+                    <TextView
+                        android:id="@+id/tvDetalhePreco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="R$ 0,00"
+                        android:textColor="#023804"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="#D0D0D0" />
+
+                    <!-- Descrição -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Descrição"
+                        android:textColor="#023804"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvQuantidade"
-                        android:layout_width="48dp"
+                        android:id="@+id/tvDetalheDescricao"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="#1A1A1A"
-                        android:gravity="center" />
+                        android:layout_marginTop="4dp"
+                        android:text="Descrição completa do produto aqui."
+                        android:textColor="#444444"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="4dp" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="#D0D0D0" />
+
+                    <!-- Quantidade -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quantidade"
+                        android:textColor="#023804"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <Button
+                            android:id="@+id/btnMenos"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:text="−"
+                            android:textSize="20sp"
+                            android:backgroundTint="#5D8A3E"
+                            android:textColor="#FFFFFF"
+                            android:padding="0dp"
+                            app:cornerRadius="20dp" />
+
+                        <TextView
+                            android:id="@+id/tvQuantidade"
+                            android:layout_width="48dp"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A1A1A"
+                            android:gravity="center" />
+
+                        <Button
+                            android:id="@+id/btnMais"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:backgroundTint="#5D8A3E"
+                            android:textColor="#FFFFFF"
+                            android:padding="0dp"
+                            app:cornerRadius="20dp" />
+
+                    </LinearLayout>
+
+                    <!-- Botão Adicionar ao Carrinho -->
                     <Button
-                        android:id="@+id/btnMais"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="+"
-                        android:textSize="20sp"
-                        android:backgroundTint="#5D8A3E"
-                        android:textColor="#FFFFFF"
-                        android:padding="0dp"
-                        app:cornerRadius="20dp" />
+                        android:id="@+id/btnAdicionarCarrinho"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#023804"
+                        android:text="Adicionar ao Carrinho"
+                        android:textColor="#FFFDD0"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp" />
 
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <!-- Botão Adicionar ao Carrinho -->
-                <Button
-                    android:id="@+id/btnAdicionarCarrinho"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="#023804"
-                    android:text="Adicionar ao Carrinho"
-                    android:textColor="#FFFDD0"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="12dp" />
+        </LinearLayout>
+    </ScrollView>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

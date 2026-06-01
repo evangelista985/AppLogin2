@@ -1,3 +1,4 @@
+@file:Suppress("SpellCheckingInspection")
 package com.example.applogintest.model
 
 object CarrinhoManager {

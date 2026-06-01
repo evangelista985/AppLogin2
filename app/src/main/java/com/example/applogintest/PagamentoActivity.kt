@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.applogintest.model.CarrinhoManager
-import com.example.applogintest.model.Pedido
+import com.example.applogintest.model.*
 import com.example.applogintest.network.ApiClient
 import com.example.applogintest.util.SessionManager
 import retrofit2.Call
@@ -22,10 +21,10 @@ class PagamentoActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener { finish() }
 
-        val frete        = intent.getDoubleExtra("frete", 0.0)
-        val endereco     = intent.getStringExtra("endereco") ?: ""
-        val subtotal     = CarrinhoManager.total()
-        val total        = subtotal + frete
+        val frete    = intent.getDoubleExtra("frete", 0.0)
+        val endereco = intent.getStringExtra("endereco") ?: ""
+        val subtotal = CarrinhoManager.total()
+        val total    = subtotal + frete
 
         val tvSubtotal   = findViewById<TextView>(R.id.tvSubtotal)
         val tvFrete      = findViewById<TextView>(R.id.tvFrete)
@@ -45,83 +44,60 @@ class PagamentoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val formaPagamento = findViewById<RadioButton>(pagamentoId).text.toString()
-            val usuarioId      = SessionManager.getToken(this)?.toLongOrNull() ?: 0L
-            val nomeUsuario    = SessionManager.getNome(this)
-            val emailUsuario   = SessionManager.getEmail(this)
-
-            val itensStr = CarrinhoManager.getItens().joinToString(", ") {
-                "${it.produto.nome} x${it.quantidade}"
+            val formaPagamento = when (pagamentoId) {
+                R.id.rbPix    -> "pix"
+                R.id.rbCartao -> "cartao"
+                R.id.rbBoleto -> "boleto"
+                else          -> "pix"
             }
 
-            val pedido = Pedido(
-                usuarioId      = usuarioId,
-                nomeUsuario    = nomeUsuario,
-                itens          = itensStr,
-                subtotal       = subtotal,
-                frete          = frete,
-                total          = total,
-                formaPagamento = formaPagamento,
-                endereco       = endereco,
-                status         = "pagos",
-                statusRastreio = 0
+            val bearerToken = SessionManager.getBearerToken(this)
+            val nomeUsuario = SessionManager.getNome(this)
+            val emailUsuario = SessionManager.getEmail(this)
+
+            // Monta itens no formato que o Node espera
+            val itens = CarrinhoManager.getItens().map { item ->
+                ItemPedidoRequest(
+                    produto_id = item.produto.id,
+                    quantidade = item.quantidade
+                )
+            }
+
+            val pedidoRequest = PedidoRequest(
+                itens           = itens,
+                forma_pagamento = formaPagamento,
+                frete           = FreteRequest(valor = frete, nome = "PAC"),
+                cupom_codigo    = null
             )
 
             progressBar.visibility = View.VISIBLE
             btnFinalizar.isEnabled = false
 
-            ApiClient.instance.criarPedido(pedido).enqueue(object : Callback<Pedido> {
-                override fun onResponse(call: Call<Pedido>, response: Response<Pedido>) {
-                    if (response.isSuccessful) {
-                        val pedidoSalvo = response.body()!!
-
-                        // Envia email de confirmação
-                        val emailBody = mapOf(
-                            "email"          to emailUsuario,
-                            "nomeUsuario"    to nomeUsuario,
-                            "numeroPedido"   to (pedidoSalvo.id?.toString() ?: "-"),
-                            "itens"          to itensStr,
-                            "subtotal"       to "%.2f".format(subtotal),
-                            "frete"          to "%.2f".format(frete),
-                            "total"          to "%.2f".format(total),
-                            "formaPagamento" to formaPagamento,
-                            "endereco"       to endereco
-                        )
-
-                        ApiClient.instance.confirmarEmailPedido(emailBody)
-                            .enqueue(object : Callback<Map<String, String>> {
-                                override fun onResponse(call: Call<Map<String, String>>, response: Response<Map<String, String>>) {
-                                    // Email enviado silenciosamente
-                                }
-                                override fun onFailure(call: Call<Map<String, String>>, t: Throwable) {
-                                    // Falha no email não bloqueia o fluxo
-                                }
-                            })
-
+            ApiClient.instance.criarPedido(bearerToken, pedidoRequest)
+                .enqueue(object : Callback<PedidoResponse> {
+                    override fun onResponse(call: Call<PedidoResponse>, response: Response<PedidoResponse>) {
                         progressBar.visibility = View.GONE
                         btnFinalizar.isEnabled = true
-
-                        Toast.makeText(
-                            this@PagamentoActivity,
-                            "Pedido finalizado! 🌿 Confirmação enviada para $emailUsuario",
-                            Toast.LENGTH_LONG
-                        ).show()
-
-                        CarrinhoManager.limpar()
-                        finishAffinity()
-                        startActivity(Intent(this@PagamentoActivity, HomeActivity::class.java))
-                    } else {
-                        progressBar.visibility = View.GONE
-                        btnFinalizar.isEnabled = true
-                        Toast.makeText(this@PagamentoActivity, "Erro ao salvar pedido", Toast.LENGTH_SHORT).show()
+                        if (response.isSuccessful) {
+                            val pedidoSalvo = response.body()!!
+                            Toast.makeText(
+                                this@PagamentoActivity,
+                                "Pedido #${pedidoSalvo.pedido_id} finalizado! 🌿\nConfirmação enviada para $emailUsuario",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            CarrinhoManager.limpar()
+                            finishAffinity()
+                            startActivity(Intent(this@PagamentoActivity, HomeActivity::class.java))
+                        } else {
+                            Toast.makeText(this@PagamentoActivity, "Erro ao salvar pedido", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
-                override fun onFailure(call: Call<Pedido>, t: Throwable) {
-                    progressBar.visibility = View.GONE
-                    btnFinalizar.isEnabled = true
-                    Toast.makeText(this@PagamentoActivity, "Falha na rede: ${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
+                    override fun onFailure(call: Call<PedidoResponse>, t: Throwable) {
+                        progressBar.visibility = View.GONE
+                        btnFinalizar.isEnabled = true
+                        Toast.makeText(this@PagamentoActivity, "Falha na rede: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
         }
     }
 }

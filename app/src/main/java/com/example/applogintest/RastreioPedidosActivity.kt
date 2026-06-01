@@ -21,15 +21,12 @@ class RastreioPedidosActivity : AppCompatActivity() {
 
     private lateinit var adapter: PedidoAdapter
     private val handler = Handler(Looper.getMainLooper())
-    private var usuarioId = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rastreio_pedidos)
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener { finish() }
-
-        usuarioId = SessionManager.getToken(this)?.toLongOrNull() ?: 0L
 
         val recycler    = findViewById<RecyclerView>(R.id.recyclerPedidos)
         val tvVazio     = findViewById<TextView>(R.id.tvVazio)
@@ -41,7 +38,6 @@ class RastreioPedidosActivity : AppCompatActivity() {
 
         carregarPedidos(tvVazio, progressBar)
 
-        // Atualiza rastreio a cada 30 segundos
         handler.postDelayed(object : Runnable {
             override fun run() {
                 carregarPedidos(tvVazio, progressBar)
@@ -52,7 +48,9 @@ class RastreioPedidosActivity : AppCompatActivity() {
 
     private fun carregarPedidos(tvVazio: TextView, progressBar: ProgressBar) {
         progressBar.visibility = View.VISIBLE
-        ApiClient.instance.listarPedidos(usuarioId)
+        val token = SessionManager.getBearerToken(this)
+
+        ApiClient.instance.listarPedidos(token)
             .enqueue(object : Callback<List<Pedido>> {
                 override fun onResponse(call: Call<List<Pedido>>, response: Response<List<Pedido>>) {
                     progressBar.visibility = View.GONE
@@ -71,5 +69,6 @@ class RastreioPedidosActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
+        adapter.limparHandlers()
     }
 }

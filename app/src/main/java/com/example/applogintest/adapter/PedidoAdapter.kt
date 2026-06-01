@@ -4,11 +4,12 @@ package com.example.applogintest.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applogintest.R
 import com.example.applogintest.model.Pedido
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PedidoAdapter(
     private var pedidos: List<Pedido>
@@ -34,58 +35,64 @@ class PedidoAdapter(
         return ViewHolder(view)
     }
 
+    private fun formatarData(dataIso: String?): String {
+        if (dataIso.isNullOrEmpty()) return ""
+        return try {
+            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+            parser.timeZone = TimeZone.getTimeZone("UTC")
+            val date = parser.parse(dataIso) ?: return dataIso
+            val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR"))
+            formatter.timeZone = TimeZone.getDefault()
+            formatter.format(date)
+        } catch (e: Exception) {
+            dataIso
+        }
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pedido  = pedidos[position]
         val verde   = 0xFF023804.toInt()
         val cinza   = 0xFFD0D0D0.toInt()
-        val context = holder.itemView.context
 
         holder.tvId.text        = "Pedido #${pedido.id}"
-        holder.tvData.text      = pedido.dataPedido ?: ""
-        holder.tvTotal.text     = "Total: R$ %.2f".format(pedido.total ?: 0.0)
-        holder.tvPagamento.text = pedido.formaPagamento ?: ""
+        holder.tvData.text      = formatarData(pedido.criado_em)
+        val valorExibir         = pedido.total_final ?: pedido.total ?: 0.0
+        holder.tvTotal.text     = "Total: R$ %.2f".format(valorExibir)
+        holder.tvPagamento.text = pedido.forma_pagamento ?: ""
 
-        // Para animações anteriores
+        // Verifica se o status é válido para mostrar rastreio
+        val statusValido = listOf("pago", "pagos", "enviado", "entregue",
+            "preparacao", "preparação", "transporte")
+        val status = pedido.status?.lowercase() ?: ""
+
+        if (status.isEmpty() || status == "pendente" || status == "cancelado") {
+            holder.layoutRastreio.visibility = View.GONE
+            holder.tvStatusAberto.visibility = View.VISIBLE
+            return
+        }
+
+        holder.layoutRastreio.visibility = View.VISIBLE
+        holder.tvStatusAberto.visibility = View.GONE
+
+        // Converte status do Node para etapa numérica
+        val etapa = when (status) {
+            "pago", "pagos", "preparacao", "preparação" -> 0
+            "enviado", "transporte"                      -> 1
+            "entregue", "finalizado"                     -> 2
+            else                                         -> 0
+        }
+
+        // Aplica cores SEM animação — verde=concluído/atual, cinza=futuro
+        holder.icPreparacao.setBackgroundColor(verde)
+        holder.linhaEtapa1.setBackgroundColor(if (etapa >= 1) verde else cinza)
+        holder.icTransportadora.setBackgroundColor(if (etapa >= 1) verde else cinza)
+        holder.linhaEtapa2.setBackgroundColor(if (etapa >= 2) verde else cinza)
+        holder.icEntregue.setBackgroundColor(if (etapa >= 2) verde else cinza)
+
+        // Sem animações — ícones estáticos
         holder.icPreparacao.clearAnimation()
         holder.icTransportadora.clearAnimation()
         holder.icEntregue.clearAnimation()
-
-        if (pedido.status == "pagos") {
-            holder.layoutRastreio.visibility = View.VISIBLE
-            holder.tvStatusAberto.visibility = View.GONE
-
-            val etapa = pedido.statusRastreio ?: 0
-
-            // Cores dos ícones e linhas
-            holder.icPreparacao.setBackgroundColor(if (etapa >= 0) verde else cinza)
-            holder.icTransportadora.setBackgroundColor(if (etapa >= 1) verde else cinza)
-            holder.linhaEtapa1.setBackgroundColor(if (etapa >= 1) verde else cinza)
-            holder.icEntregue.setBackgroundColor(if (etapa >= 2) verde else cinza)
-            holder.linhaEtapa2.setBackgroundColor(if (etapa >= 2) verde else cinza)
-
-            // Animações por etapa atual
-            when (etapa) {
-                0 -> {
-                    // Preparação pulsando
-                    val animPulsar = AnimationUtils.loadAnimation(context, R.anim.anim_pulsar)
-                    holder.icPreparacao.startAnimation(animPulsar)
-                }
-                1 -> {
-                    // Transportadora deslizando
-                    val animDeslizar = AnimationUtils.loadAnimation(context, R.anim.anim_deslizar)
-                    holder.icTransportadora.startAnimation(animDeslizar)
-                }
-                2 -> {
-                    // Entregue com fade/escala
-                    val animConfirmar = AnimationUtils.loadAnimation(context, R.anim.anim_confirmar)
-                    holder.icEntregue.startAnimation(animConfirmar)
-                }
-            }
-
-        } else {
-            holder.layoutRastreio.visibility = View.GONE
-            holder.tvStatusAberto.visibility = View.VISIBLE
-        }
     }
 
     override fun getItemCount() = pedidos.size
@@ -94,4 +101,7 @@ class PedidoAdapter(
         pedidos = novaLista
         notifyDataSetChanged()
     }
+
+    // Mantido para compatibilidade com RastreioPedidosActivity
+    fun limparHandlers() {}
 }

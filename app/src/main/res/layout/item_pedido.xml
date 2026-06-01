@@ -14,7 +14,6 @@
         android:padding="16dp"
         android:background="#FFFDD0">
 
-        <!-- Número e data -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +38,6 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- Total e pagamento -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +63,6 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
-        <!-- Divider -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -73,7 +70,6 @@
             android:layout_marginBottom="12dp"
             android:background="#D0D0D0" />
 
-        <!-- Rastreio do pedido -->
         <LinearLayout
             android:id="@+id/layoutRastreio"
             android:layout_width="match_parent"
@@ -95,7 +91,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!-- Preparação -->
+                <!-- Preparacao -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -121,7 +117,8 @@
                         android:text="Preparação"
                         android:textColor="#444"
                         android:textSize="10sp"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:maxLines="1" />
                 </LinearLayout>
 
                 <View
@@ -154,10 +151,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="4dp"
-                        android:text="Transportadora"
+                        android:text="Transporte"
                         android:textColor="#444"
                         android:textSize="10sp"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:maxLines="1" />
                 </LinearLayout>
 
                 <View
@@ -193,13 +191,13 @@
                         android:text="Entregue"
                         android:textColor="#444"
                         android:textSize="10sp"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:maxLines="1" />
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Necessário para o adapter — ficará gone -->
         <TextView
             android:id="@+id/tvStatusAberto"
             android:layout_width="wrap_content"
