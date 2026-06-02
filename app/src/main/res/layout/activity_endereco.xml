@@ -108,6 +108,7 @@
                 </LinearLayout>
 
                 <!-- Novo endereço -->
+                <!-- Novo endereço -->
                 <LinearLayout
                     android:id="@+id/layoutNovoEndereco"
                     android:layout_width="match_parent"
@@ -128,12 +129,57 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:id="@+id/etRua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="Rua / Logradouro"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:background="@drawable/fundo_input_branco"
+                        android:textSize="14sp" />
+
+                    <EditText
                         android:id="@+id/etNumero"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:hint="Número"
                         android:inputType="text"
+                        android:padding="12dp"
+                        android:background="@drawable/fundo_input_branco"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etBairro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="Bairro"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:background="@drawable/fundo_input_branco"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etCidade"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="Cidade"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:background="@drawable/fundo_input_branco"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etEstado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="Estado (ex: SP)"
+                        android:inputType="text"
+                        android:maxLength="2"
                         android:padding="12dp"
                         android:background="@drawable/fundo_input_branco"
                         android:textSize="14sp" />
@@ -148,19 +194,6 @@
                         android:padding="12dp"
                         android:background="@drawable/fundo_input_branco"
                         android:textSize="14sp" />
-
-                    <!-- Endereço encontrado via CEP -->
-                    <TextView
-                        android:id="@+id/tvEnderecoEncontrado"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="#E8F5E9"
-                        android:padding="10dp"
-                        android:text=""
-                        android:textColor="#023804"
-                        android:textSize="13sp"
-                        android:visibility="gone" />
 
                 </LinearLayout>
 
