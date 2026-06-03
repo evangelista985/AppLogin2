@@ -241,9 +241,10 @@ class HomeActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<List<Produto>>, t: Throwable) {
                 progressBar.visibility = View.GONE
+                android.util.Log.e("API_ERRO", "Falha: ${t.javaClass.simpleName} - ${t.message}")
                 todosProdutos = produtosDemo
                 adapter.atualizar(todosProdutos)
-                Toast.makeText(this@HomeActivity, getString(R.string.usando_dados_locais), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@HomeActivity, "ERRO: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }
