@@ -59,11 +59,17 @@ class MainActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val body = response.body()!!
                             SessionManager.salvar(
-                                context = this@MainActivity,
-                                token   = body.token,
-                                id      = body.cliente.id,
-                                nome    = body.cliente.nome,
-                                email   = body.cliente.email
+                                context  = this@MainActivity,
+                                token    = body.token,
+                                id       = body.cliente.id,
+                                nome     = body.cliente.nome,
+                                email    = body.cliente.email,
+                                cep      = body.cliente.cep      ?: "",
+                                endereco = body.cliente.endereco ?: "",
+                                numero   = body.cliente.numero   ?: "",
+                                bairro   = body.cliente.bairro   ?: "",
+                                cidade   = body.cliente.cidade   ?: "",
+                                estado   = body.cliente.estado   ?: ""
                             )
                             irParaHome()
                         } else {

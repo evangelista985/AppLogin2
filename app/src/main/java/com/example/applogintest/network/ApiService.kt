@@ -11,6 +11,7 @@ import com.example.applogintest.model.Produto
 import retrofit2.Call
 import retrofit2.http.*
 import com.example.applogintest.BannerItem
+import com.example.applogintest.model.AtualizarEnderecoRequest
 interface ApiService {
 
     // ── Autenticação ──────────────────────────────────────────────────────────
@@ -58,4 +59,10 @@ interface ApiService {
         @Path("id") id: Long,
         @Body body: Map<String, String>
     ): Call<Map<String, String>>
+    @PUT("api/clientes/endereco")
+    fun atualizarEndereco(
+        @Header("Authorization") token: String,
+        @Body body: AtualizarEnderecoRequest
+    ): Call<Map<String, String>>
+
 }
