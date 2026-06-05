@@ -49,9 +49,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#FFFDD0"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFDD0">
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,30 +64,20 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     android:background="#D0D0D0" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Subtotal"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvSubtotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ 0,00"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Subtotal"
+                        android:textColor="#444" android:textSize="14sp" />
+                    <TextView android:id="@+id/tvSubtotal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="R$ 0,00"
+                        android:textColor="#444" android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -95,55 +85,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Frete"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvFrete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ 0,00"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Frete"
+                        android:textColor="#444" android:textSize="14sp" />
+                    <TextView android:id="@+id/tvFrete" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="R$ 0,00"
+                        android:textColor="#444" android:textSize="14sp" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     android:background="#D0D0D0" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Total"
-                        android:textColor="#023804"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvTotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ 0,00"
-                        android:textColor="#023804"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Total"
+                        android:textColor="#023804" android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvTotal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="R$ 0,00"
+                        android:textColor="#023804" android:textSize="18sp" android:textStyle="bold" />
                 </LinearLayout>
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -160,9 +127,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#FFFDD0"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFDD0">
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -179,57 +146,314 @@
                     android:layout_marginTop="12dp"
                     android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rbPix"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="💚 Pix"
-                        android:textColor="#444"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                    <RadioButton android:id="@+id/rbPix"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="💚 Pix" android:textColor="#444"
+                        android:textSize="15sp" android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/rbCartao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <RadioButton android:id="@+id/rbCartao"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="💳 Cartão de Crédito"
-                        android:textColor="#444"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:text="💳 Cartão de Crédito" android:textColor="#444"
+                        android:textSize="15sp" android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/rbBoleto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <RadioButton android:id="@+id/rbBoleto"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="📄 Boleto"
-                        android:textColor="#444"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:text="📄 Boleto" android:textColor="#444"
+                        android:textSize="15sp" android:textStyle="bold" />
                 </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-                <!-- ProgressBar adicionado aqui -->
+        <!-- Cartão Visual + Formulário (aparece só quando Cartão selecionado) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardFormCartao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="💳 Dados do Cartão"
+                    android:textColor="#3A5D3E"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Cartão visual (frente/verso via FrameLayout) -->
+                <FrameLayout
+                    android:id="@+id/frameCartao"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <!-- FRENTE -->
+                    <LinearLayout
+                        android:id="@+id/cardFrente"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_cartao_verde"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <!-- Chip dourado -->
+                            <View
+                                android:layout_width="42dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/bg_chip_cartao" />
+
+                            <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+
+                            <!-- Bandeira -->
+                            <TextView
+                                android:id="@+id/tvBandeira"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="#fff"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/bg_badge_bandeira"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="8dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvNumeroCartao"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="**** **** **** ****"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:letterSpacing="0.1"
+                            android:fontFamily="monospace"
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:ellipsize="none"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="TITULAR" android:textColor="#aaffffff" android:textSize="9sp"/>
+                                <TextView android:id="@+id/tvNomeTitular" android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" android:text="NOME DO TITULAR"
+                                    android:textColor="#fff" android:textSize="12sp" android:textStyle="bold"/>
+                            </LinearLayout>
+
+                            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="VIDADE" android:textColor="#aaffffff" android:textSize="9sp"/>
+                                <TextView android:id="@+id/tvValidadeCartao" android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" android:text="MM/AA"
+                                    android:textColor="#fff" android:textSize="12sp" android:textStyle="bold"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- VERSO -->
+                    <LinearLayout
+                        android:id="@+id/cardVerso"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_cartao_verde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <!-- Tarja preta -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="24dp"
+                            android:background="#111"/>
+
+                        <!-- Assinatura + CVV -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="#f0f0f0"
+                            android:padding="10dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="CVV"
+                                android:textColor="#333" android:textSize="12sp" android:textStyle="bold"/>
+
+                            <TextView android:id="@+id/tvCvvCartao"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="•••" android:textColor="#333"
+                                android:textSize="20sp" android:fontFamily="monospace" android:letterSpacing="0.3"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Toque no cartão para ver o verso"
+                    android:textColor="#999"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Badge bandeira detectada -->
+                <LinearLayout
+                    android:id="@+id/layoutBadgeBandeira"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_bandeira_full"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:visibility="gone">
+                    <TextView android:id="@+id/tvBandeiraDetectada"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="13sp" android:textStyle="bold"/>
+                </LinearLayout>
+
+                <!-- Número do cartão -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Número do Cartão *" android:textColor="#444"
+                    android:textSize="13sp" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etNumeroCartao"
+                    android:layout_width="match_parent" android:layout_height="48dp"
+                    android:hint="0000 0000 0000 0000"
+                    android:inputType="number"
+                    android:maxLength="19"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingStart="12dp" android:paddingEnd="12dp"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Nome titular -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Nome do Titular *" android:textColor="#444"
+                    android:textSize="13sp" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etNomeTitular"
+                    android:layout_width="match_parent" android:layout_height="48dp"
+                    android:hint="Como está no cartão"
+                    android:inputType="textPersonName|textCapCharacters"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingStart="12dp" android:paddingEnd="12dp"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Validade + CVV lado a lado -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Validade *" android:textColor="#444"
+                            android:textSize="13sp" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+                        <EditText android:id="@+id/etValidade"
+                            android:layout_width="match_parent" android:layout_height="48dp"
+                            android:hint="MM/AA" android:inputType="number" android:maxLength="5"
+                            android:background="@drawable/bg_input_field"
+                            android:paddingStart="12dp" android:paddingEnd="12dp" android:textSize="15sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="CVV *" android:textColor="#444"
+                            android:textSize="13sp" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+                        <EditText android:id="@+id/etCvv"
+                            android:layout_width="match_parent" android:layout_height="48dp"
+                            android:hint="123" android:inputType="numberPassword" android:maxLength="4"
+                            android:background="@drawable/bg_input_field"
+                            android:paddingStart="12dp" android:paddingEnd="12dp" android:textSize="15sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Parcelas -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Parcelas" android:textColor="#444"
+                    android:textSize="13sp" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+                <Spinner android:id="@+id/spinnerParcelas"
+                    android:layout_width="match_parent" android:layout_height="48dp"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingStart="12dp" android:paddingEnd="12dp"
+                    android:layout_marginBottom="8dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Botão Finalizar + Progress -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFDD0"
+                android:orientation="vertical"
+                android:padding="16dp">
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:visibility="gone" />
 
                 <Button
                     android:id="@+id/btnFinalizar"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:layout_marginTop="16dp"
                     android:backgroundTint="#023804"
                     android:text="🌿 Finalizar Pedido"
                     android:textColor="#FFFDD0"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp" />
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
