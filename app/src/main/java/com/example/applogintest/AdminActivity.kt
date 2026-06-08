@@ -23,7 +23,7 @@ class AdminActivity : AppCompatActivity() {
         val tvVersao    = findViewById<TextView>(R.id.tvVersao)
         val tvAmbiente  = findViewById<TextView>(R.id.tvAmbiente)
         val btnVoltar   = findViewById<Button>(R.id.btnVoltarAdmin)
-        val btnLogout   = findViewById<Button>(R.id.btnLogoutAdmin)
+        val btnLogout   = findViewById<Button>(R.id.btnSair)
         val switchNotif = findViewById<Switch>(R.id.switchNotificacoes)
 
         // Informações do usuário logado

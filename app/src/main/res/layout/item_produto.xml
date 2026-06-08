@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- item_produto.xml · Grid 2 colunas · Minimalista Natural Premium -->
+<!-- IMPORTANTE: No Java/Kotlin usar GridLayoutManager(context, 2) -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/white">
 
+    <!-- Borda suave via stroke não disponível no CardView, usamos background -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        android:gravity="center_vertical"
-        android:background="#FFFDD0">
+        android:orientation="vertical"
+        android:padding="11dp"
+        android:gravity="center_horizontal">
 
-        <!-- Imagem com cantos arredondados -->
+        <!-- Foto do produto -->
         <androidx.cardview.widget.CardView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp">
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            app:cardCornerRadius="11dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/verde_fundo_badge">
 
             <ImageView
                 android:id="@+id/imgProduto"
@@ -29,76 +33,73 @@
                 android:layout_height="match_parent"
                 android:src="@mipmap/ic_launcher"
                 android:scaleType="centerCrop" />
-
         </androidx.cardview.widget.CardView>
 
-        <!-- Nome, categoria, descrição e preço -->
-        <LinearLayout
-            android:layout_width="0dp"
+        <!-- Badge de categoria -->
+        <TextView
+            android:id="@+id/tvProdutoCategoria"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginTop="8dp"
+            android:text="Categoria"
+            android:textColor="@color/texto_badge"
+            android:textSize="9sp"
+            android:letterSpacing="0.1" />
 
-            <TextView
-                android:id="@+id/tvProdutoCategoria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#E8F5E9"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="Categoria"
-                android:textColor="#023804"
-                android:textSize="11sp" />
+        <!-- Nome do produto -->
+        <TextView
+            android:id="@+id/tvProdutoNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Nome do Produto"
+            android:textColor="@color/verde_escuro"
+            android:textSize="13sp"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:lineSpacingExtra="1dp" />
 
-            <TextView
-                android:id="@+id/tvProdutoNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Nome do Produto"
-                android:textColor="#1A1A1A"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
+        <!-- Descrição (oculta no grid) -->
+        <TextView
+            android:id="@+id/tvProdutoDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Descrição"
+            android:textColor="@color/texto_secundario"
+            android:textSize="11sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tvProdutoDescricao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Descrição"
-                android:textColor="#616161"
-                android:textSize="12sp"
-                android:maxLines="2"
-                android:ellipsize="end" />
-
-            <TextView
-                android:id="@+id/tvProdutoPreco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="R$ 0,00"
-                android:textColor="#023804"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+        <!-- Preço -->
+        <TextView
+            android:id="@+id/tvProdutoPreco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="R$ 0,00"
+            android:textColor="@color/verde_medio"
+            android:textSize="13sp"
+            android:fontFamily="serif"
+            android:textStyle="bold" />
 
         <!-- Botão Ver Detalhes -->
         <Button
             android:id="@+id/btnVerDetalhes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#023804"
-            android:text="Ver\nDetalhes"
-            android:textColor="#FFFDD0"
-            android:textSize="11sp"
-            android:gravity="center"
-            app:cornerRadius="8dp" />
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/verde_escuro"
+            android:text="VER DETALHES"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:letterSpacing="0.08"
+            android:textStyle="bold"
+            app:cornerRadius="9dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

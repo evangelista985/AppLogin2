@@ -1,4 +1,7 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_banner.xml · Pura Essência · Minimalista Natural Premium -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -6,43 +9,56 @@
         android:id="@+id/imgBanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
-
-    <!--  Gradiente escuro na parte inferior  -->
+    <!-- Gradiente escuro na parte inferior -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradiente_banner"/>
+        android:background="@drawable/gradiente_banner" />
 
+    <!-- Tag superior esquerdo -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="12dp"
+        android:background="@color/verde_fundo_badge"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:text="Nova coleção"
+        android:textColor="@color/verde_medio"
+        android:textSize="9sp"
+        android:letterSpacing="0.1" />
 
-    <!--  Textos sobre o banner  -->
+    <!-- Textos sobre o banner (fundo) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        android:padding="16dp">
-
+        android:padding="14dp">
 
         <TextView
             android:id="@+id/tvBannerTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Título"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="17sp"
+            android:fontFamily="serif"
             android:textStyle="bold"
-            android:letterSpacing="0.03"/>
-
+            android:letterSpacing="0.02" />
 
         <TextView
             android:id="@+id/tvBannerSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Subtítulo"
-            android:textColor="#E0E0E0"
-            android:textSize="12sp"
-            android:layout_marginTop="2dp"/>
+            android:textColor="@color/verde_menta"
+            android:textSize="11sp"
+            android:layout_marginTop="3dp" />
     </LinearLayout>
 </FrameLayout>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- activity_cadastro.xml · Pura Essência · Minimalista Natural Premium -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#023804">
+    android:background="@color/verde_escuro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,144 +13,228 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+        <!-- Header -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            app:srcCompat="@drawable/icone_essencia" />
+            app:cardCornerRadius="11dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/creme_fundo">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                app:srcCompat="@drawable/icone_essencia"
+                android:scaleType="fitCenter" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="24dp"
-            android:text="Criar Conta 🌿"
-            android:textColor="#FFFDD0"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:text="Criar Conta"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:fontFamily="serif"
+            android:textStyle="italic" />
 
+        <!-- ─── Card Principal ─── -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/creme_fundo">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:background="#FFFDD0">
+                android:padding="22dp">
 
-                <!-- Dados pessoais -->
+                <!-- ── Seção: Dados Pessoais ── -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="📋 Dados Pessoais"
-                    android:textColor="#023804"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginBottom="14dp"
+                    android:text="DADOS PESSOAIS"
+                    android:textColor="@color/texto_badge"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.15" />
 
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOME COMPLETO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
                 <EditText
                     android:id="@+id/editTextNome"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="14dp"
                     android:background="@drawable/fundo_input_branco"
-                    android:hint="Nome completo *"
+                    android:hint="Seu nome completo"
                     android:inputType="textPersonName"
-                    android:padding="12dp"
-                    android:textColorHint="#023804" />
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
-                <EditText android:id="@+id/editTextEmail"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="E-mail *" android:inputType="textEmailAddress"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-MAIL" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/fundo_input_branco"
+                    android:hint="seu@email.com"
+                    android:inputType="textEmailAddress"
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
-                <EditText android:id="@+id/editTextTelefone"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="Telefone" android:inputType="phone"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TELEFONE" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <EditText
+                    android:id="@+id/editTextTelefone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/fundo_input_branco"
+                    android:hint="(00) 00000-0000"
+                    android:inputType="phone"
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
-                <EditText android:id="@+id/editTextCpf"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="CPF" android:inputType="number"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CPF" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <EditText
+                    android:id="@+id/editTextCpf"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/fundo_input_branco"
+                    android:hint="000.000.000-00"
+                    android:inputType="number"
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
-                <EditText android:id="@+id/editTextSenha"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="Senha * (mín. 6 caracteres)" android:inputType="textPassword"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SENHA" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <EditText
+                    android:id="@+id/editTextSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="22dp"
+                    android:background="@drawable/fundo_input_branco"
+                    android:hint="Mínimo 6 caracteres"
+                    android:inputType="textPassword"
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
-                <!-- Endereço -->
+                <!-- Divisor -->
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/borda_card" android:layout_marginBottom="18dp" />
+
+                <!-- ── Seção: Endereço ── -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="📍 Endereço de Entrega"
-                    android:textColor="#023804"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginBottom="14dp"
+                    android:text="ENDEREÇO DE ENTREGA"
+                    android:textColor="@color/texto_badge"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.15" />
 
-                <EditText android:id="@+id/editTextCep"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="CEP" android:inputType="number" android:maxLength="8"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CEP" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <EditText
+                    android:id="@+id/editTextCep"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/fundo_input_branco"
+                    android:hint="00000-000"
+                    android:inputType="number"
+                    android:maxLength="8"
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
-                <EditText android:id="@+id/editTextEndereco"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="Rua / Logradouro" android:inputType="text"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RUA / LOGRADOURO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <EditText
+                    android:id="@+id/editTextEndereco"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/fundo_input_branco"
+                    android:hint="Ex: Rua das Flores"
+                    android:inputType="text"
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
-                <EditText android:id="@+id/editTextNumero"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="Número" android:inputType="text"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <!-- Número e Bairro lado a lado -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="14dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NÚMERO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                        <EditText android:id="@+id/editTextNumero" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="123" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BAIRRO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                        <EditText android:id="@+id/editTextBairro" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="Bairro" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
-                <EditText android:id="@+id/editTextBairro"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="Bairro" android:inputType="text"
-                    android:padding="12dp" android:textColorHint="#023804" />
-
-                <EditText android:id="@+id/editTextCidade"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="Cidade" android:inputType="text"
-                    android:padding="12dp" android:textColorHint="#023804" />
-
-                <EditText android:id="@+id/editTextEstado"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" android:background="@drawable/fundo_input_branco"
-                    android:hint="Estado (ex: SP)" android:inputType="text" android:maxLength="2"
-                    android:padding="12dp" android:textColorHint="#023804" />
+                <!-- Cidade e Estado lado a lado -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="22dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:orientation="vertical" android:layout_marginEnd="8dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CIDADE" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                        <EditText android:id="@+id/editTextCidade" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="Cidade" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UF" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                        <EditText android:id="@+id/editTextEstado" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="SP" android:inputType="text" android:maxLength="2" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:indeterminateTint="@color/verde_escuro"
                     android:visibility="gone" />
 
                 <Button
                     android:id="@+id/btnCadastro"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:backgroundTint="#023804"
-                    android:text="🌿 Criar Conta"
-                    android:textColor="#FFFDD0"
-                    android:textSize="16sp"
+                    android:layout_height="52dp"
+                    android:backgroundTint="@color/verde_escuro"
+                    android:text="CRIAR CONTA"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:letterSpacing="0.1"
+                    android:textStyle="bold"
                     app:cornerRadius="12dp" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="🌿 Natureza e bem-estar"
+            android:textColor="@color/verde_claro"
+            android:textSize="11sp"
+            android:fontFamily="serif"
+            android:textStyle="italic" />
+
     </LinearLayout>
 </ScrollView>

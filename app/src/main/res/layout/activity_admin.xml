@@ -1,174 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- activity_admin.xml · Pura Essência · Minimalista Natural Premium -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFDD0">
+    android:background="@color/creme_fundo">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-        <!-- Header -->
+        <!-- ═══ HEADER ═══ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#023804"
+            android:background="@color/verde_escuro"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="12dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/icone_essencia" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/creme_fundo">
 
-            <TextView
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/icone_essencia"
+                    android:scaleType="fitCenter" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="⚙️ Configurações"
-                android:textColor="#FFFDD0"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PURA ESSÊNCIA"
+                    android:textColor="@color/verde_claro"
+                    android:textSize="9sp"
+                    android:letterSpacing="0.2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Configurações"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:fontFamily="serif"
+                    android:textStyle="italic" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="#FFFDD0">
+            android:padding="14dp">
 
-            <!-- Card do usuário -->
+            <!-- ── Card: Informações da Conta ── -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:text="👤 Informações da Conta"
-                        android:textColor="#023804"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:text="INFORMAÇÕES DA CONTA"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15" />
 
-                    <TextView
-                        android:id="@+id/tvAdminEmail"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Usuário: —"
-                        android:textColor="#333"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/verde_fundo_badge">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="🌿"
+                                android:gravity="center"
+                                android:textSize="18sp" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvAdminEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Usuário: —"
+                                android:textColor="@color/texto_principal"
+                                android:textSize="14sp"
+                                android:fontFamily="serif" />
+
+                            <TextView
+                                android:id="@+id/tvAmbiente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="Ambiente: —"
+                                android:textColor="@color/texto_badge"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Card do app -->
+            <!-- ── Card: Sobre o App ── -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:text="📱 Sobre o App"
-                        android:textColor="#023804"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:layout_marginBottom="10dp"
+                        android:text="SOBRE O APP"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15" />
 
                     <TextView
                         android:id="@+id/tvVersao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="6dp"
-                        android:text="Versão: 1.0.0"
-                        android:textColor="#333"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvAmbiente"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ambiente: Desenvolvimento 🌱"
-                        android:textColor="#333"
+                        android:text="Versão: —"
+                        android:textColor="@color/texto_principal"
                         android:textSize="14sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Card de preferências -->
+            <!-- ── Card: Configurações ── -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="🔔 Notificações"
-                        android:textColor="#333"
-                        android:textSize="14sp" />
-
-                    <Switch
-                        android:id="@+id/switchNotificacoes"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:text="CONFIGURAÇÕES"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15" />
+
+                    <!-- Notificações -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="🔔  Notificações"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp" />
+
+                        <Switch
+                            android:id="@+id/switchNotificacoes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:thumbTint="@color/verde_escuro"
+                            android:trackTint="@color/verde_menta" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/borda_card"
+                        android:layout_marginBottom="4dp" />
+
+                    <!-- Modo Escuro -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="🌙  Modo Escuro"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="14sp" />
+
+                        <Switch
+                            android:id="@+id/switchModoEscuro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:thumbTint="@color/verde_escuro"
+                            android:trackTint="@color/verde_menta" />
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- ── Botão Voltar ── -->
             <Button
                 android:id="@+id/btnVoltarAdmin"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="#5D8A3E"
-                android:text="← Voltar"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/verde_fundo_badge"
+                android:text="VOLTAR"
+                android:textColor="@color/verde_escuro"
+                android:textSize="13sp"
+                android:letterSpacing="0.1"
+                android:textStyle="bold"
                 app:cornerRadius="12dp" />
 
+            <!-- ── Botão Sair ── -->
             <Button
-                android:id="@+id/btnLogoutAdmin"
+                android:id="@+id/btnSair"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:backgroundTint="#8B0000"
-                android:text="↩ Sair da Conta"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                app:cornerRadius="12dp" />
+                android:backgroundTint="@color/white"
+                android:text="SAIR DA CONTA"
+                android:textColor="@color/vermelho_sair"
+                android:textSize="13sp"
+                android:letterSpacing="0.1"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

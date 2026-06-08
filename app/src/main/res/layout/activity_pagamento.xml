@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- activity_pagamento.xml · Pura Essência · Minimalista Natural Premium -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7F2">
+    android:background="@color/creme_fundo">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header -->
+        <!-- ═══ HEADER ═══ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#023804"
+            android:background="@color/verde_escuro"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="12dp">
+            android:paddingStart="12dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
 
             <ImageButton
                 android:id="@+id/btnVoltar"
@@ -27,206 +31,168 @@
                 android:src="@drawable/ic_seta_voltar"
                 android:contentDescription="Voltar" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="💳 Pagamento"
-                android:textColor="#FFFDD0"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PURA ESSÊNCIA"
+                    android:textColor="@color/verde_claro"
+                    android:textSize="9sp"
+                    android:letterSpacing="0.2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pagamento"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:fontFamily="serif"
+                    android:textStyle="italic" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Resumo do pedido -->
+        <!-- ═══ RESUMO DO PEDIDO ═══ -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFDD0">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resumo do Pedido"
-                    android:textColor="#023804"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="RESUMO DO PEDIDO"
+                    android:textColor="@color/texto_badge"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="12dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="#D0D0D0" />
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/borda_card" android:layout_marginBottom="12dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Subtotal"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvSubtotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ 0,00"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Subtotal" android:textColor="@color/texto_secundario" android:textSize="14sp" />
+                    <TextView android:id="@+id/tvSubtotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R$ 0,00" android:textColor="@color/texto_principal" android:textSize="14sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Frete"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvFrete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ 0,00"
-                        android:textColor="#444"
-                        android:textSize="14sp" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Frete" android:textColor="@color/texto_secundario" android:textSize="14sp" />
+                    <TextView android:id="@+id/tvFrete" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R$ 0,00" android:textColor="@color/texto_principal" android:textSize="14sp" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="#D0D0D0" />
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/borda_card" android:layout_marginBottom="12dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Total"
-                        android:textColor="#023804"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvTotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ 0,00"
-                        android:textColor="#023804"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="TOTAL" android:textColor="@color/texto_badge" android:textSize="11sp" android:letterSpacing="0.1" />
+                    <TextView android:id="@+id/tvTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R$ 0,00" android:textColor="@color/verde_escuro" android:textSize="20sp" android:fontFamily="serif" android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Forma de pagamento -->
+        <!-- ═══ FORMA DE PAGAMENTO ═══ -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFFDD0">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forma de Pagamento"
-                    android:textColor="#023804"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="FORMA DE PAGAMENTO"
+                    android:textColor="@color/texto_badge"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="14dp" />
 
                 <RadioGroup
                     android:id="@+id/rgPagamento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:orientation="vertical">
 
                     <RadioButton
                         android:id="@+id/rbPix"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="💚 Pix"
-                        android:textColor="#444"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:text="  💚  Pix"
+                        android:textColor="@color/texto_principal"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:buttonTint="@color/verde_escuro"
+                        android:background="@color/verde_fundo_badge"
+                        android:padding="14dp" />
 
                     <RadioButton
                         android:id="@+id/rbCartao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
                         android:layout_marginTop="8dp"
-                        android:text="💳 Cartão de Crédito"
-                        android:textColor="#444"
+                        android:text="  💳  Cartão de Crédito"
+                        android:textColor="@color/texto_principal"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:buttonTint="@color/verde_escuro"
+                        android:background="@color/borda_card"
+                        android:padding="14dp" />
 
                     <RadioButton
                         android:id="@+id/rbBoleto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
                         android:layout_marginTop="8dp"
-                        android:text="📄 Boleto"
-                        android:textColor="#444"
+                        android:text="  📄  Boleto Bancário"
+                        android:textColor="@color/texto_principal"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:buttonTint="@color/verde_escuro"
+                        android:background="@color/borda_card"
+                        android:padding="14dp" />
                 </RadioGroup>
 
-                <!-- ProgressBar adicionado aqui -->
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
+                    android:indeterminateTint="@color/verde_escuro"
                     android:visibility="gone" />
 
                 <Button
                     android:id="@+id/btnFinalizar"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="#023804"
-                    android:text="🌿 Finalizar Pedido"
-                    android:textColor="#FFFDD0"
-                    android:textSize="16sp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/verde_escuro"
+                    android:text="FINALIZAR PEDIDO"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:letterSpacing="0.1"
                     android:textStyle="bold"
                     app:cornerRadius="12dp" />
 

@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- activity_rastreio_pedidos.xml · Pura Essência · Minimalista Natural Premium -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7F2">
+    android:background="@color/creme_fundo">
 
-    <!-- Header -->
+    <!-- ═══ HEADER ═══ -->
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#023804"
+        android:background="@color/verde_escuro"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,15 +32,30 @@
             android:src="@drawable/ic_seta_voltar"
             android:contentDescription="Voltar" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:text="📦 Meus Pedidos"
-            android:textColor="#FFFDD0"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PURA ESSÊNCIA"
+                android:textColor="@color/verde_claro"
+                android:textSize="9sp"
+                android:letterSpacing="0.2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meus Pedidos"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="serif"
+                android:textStyle="italic" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- ProgressBar -->
@@ -43,6 +63,7 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:indeterminateTint="@color/verde_escuro"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,24 +75,41 @@
         android:id="@+id/recyclerPedidos"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="8dp"
+        android:padding="12dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
-    <!-- Texto vazio -->
-    <TextView
+    <!-- Estado vazio -->
+    <LinearLayout
         android:id="@+id/tvVazio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="📦 Nenhum pedido encontrado"
-        android:textColor="#888"
-        android:textSize="16sp"
+        android:orientation="vertical"
+        android:gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📦"
+            android:textSize="40sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Nenhum pedido encontrado"
+            android:textColor="@color/texto_secundario"
+            android:textSize="15sp"
+            android:fontFamily="serif"
+            android:textStyle="italic" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

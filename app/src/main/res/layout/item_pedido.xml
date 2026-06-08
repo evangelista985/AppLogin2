@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- item_pedido.xml · Pura Essência · Minimalista Natural Premium -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="#FFFDD0">
+        android:padding="18dp">
 
+        <!-- Linha superior: ID + Data -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tvPedidoId"
@@ -25,51 +31,63 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Pedido #ABC123"
-                android:textColor="#023804"
+                android:textColor="@color/verde_escuro"
                 android:textSize="14sp"
+                android:fontFamily="serif"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvPedidoData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01/01/2025 10:00"
-                android:textColor="#888"
-                android:textSize="12sp" />
+                android:text="01/01/2025"
+                android:textColor="@color/texto_secundario"
+                android:textSize="11sp" />
         </LinearLayout>
 
+        <!-- Linha: Total + Pagamento -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tvPedidoTotal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Total: R$ 0,00"
-                android:textColor="#1A1A1A"
-                android:textSize="14sp"
+                android:text="R$ 0,00"
+                android:textColor="@color/verde_medio"
+                android:textSize="16sp"
+                android:fontFamily="serif"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvPedidoPagamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/verde_fundo_badge"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
                 android:text="Pix"
-                android:textColor="#5D8A3E"
-                android:textSize="13sp" />
+                android:textColor="@color/texto_badge"
+                android:textSize="11sp"
+                android:letterSpacing="0.05" />
         </LinearLayout>
 
+        <!-- Divisor -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:background="#D0D0D0" />
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="@color/borda_card" />
 
+        <!-- Rastreio -->
         <LinearLayout
             android:id="@+id/layoutRastreio"
             android:layout_width="match_parent"
@@ -79,19 +97,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rastreio do Pedido"
-                android:textColor="#023804"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="12dp"
+                android:text="RASTREIO DO PEDIDO"
+                android:textColor="@color/texto_badge"
+                android:textSize="10sp"
+                android:letterSpacing="0.15" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!-- Preparacao -->
+                <!-- Preparação -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -104,7 +122,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:background="#D0D0D0"
+                        android:background="@color/borda_card"
                         android:gravity="center"
                         android:text="📦"
                         android:textSize="18sp" />
@@ -113,22 +131,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="5dp"
                         android:text="Preparação"
-                        android:textColor="#444"
+                        android:textColor="@color/texto_secundario"
                         android:textSize="10sp"
                         android:gravity="center"
                         android:maxLines="1" />
                 </LinearLayout>
 
+                <!-- Linha conectora 1 -->
                 <View
                     android:id="@+id/linhaEtapa1"
                     android:layout_width="0dp"
-                    android:layout_height="3dp"
+                    android:layout_height="2dp"
                     android:layout_weight="0.5"
-                    android:background="#D0D0D0" />
+                    android:background="@color/borda_suave" />
 
-                <!-- Transportadora -->
+                <!-- Transporte -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -141,7 +160,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:background="#D0D0D0"
+                        android:background="@color/borda_card"
                         android:gravity="center"
                         android:text="🚚"
                         android:textSize="18sp" />
@@ -150,20 +169,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="5dp"
                         android:text="Transporte"
-                        android:textColor="#444"
+                        android:textColor="@color/texto_secundario"
                         android:textSize="10sp"
                         android:gravity="center"
                         android:maxLines="1" />
                 </LinearLayout>
 
+                <!-- Linha conectora 2 -->
                 <View
                     android:id="@+id/linhaEtapa2"
                     android:layout_width="0dp"
-                    android:layout_height="3dp"
+                    android:layout_height="2dp"
                     android:layout_weight="0.5"
-                    android:background="#D0D0D0" />
+                    android:background="@color/borda_suave" />
 
                 <!-- Entregue -->
                 <LinearLayout
@@ -178,7 +198,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:background="#D0D0D0"
+                        android:background="@color/borda_card"
                         android:gravity="center"
                         android:text="✅"
                         android:textSize="18sp" />
@@ -187,9 +207,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="5dp"
                         android:text="Entregue"
-                        android:textColor="#444"
+                        android:textColor="@color/texto_secundario"
                         android:textSize="10sp"
                         android:gravity="center"
                         android:maxLines="1" />
