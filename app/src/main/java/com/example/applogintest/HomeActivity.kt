@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.applogintest.adapter.BannerAdapter
@@ -225,7 +226,7 @@ class HomeActivity : AppCompatActivity() {
             atualizarBadgeCarrinho()
         }
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerProdutos)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
     }
 
@@ -241,9 +242,10 @@ class HomeActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<List<Produto>>, t: Throwable) {
                 progressBar.visibility = View.GONE
+                android.util.Log.e("API_ERRO", "Falha: ${t.javaClass.simpleName} - ${t.message}")
                 todosProdutos = produtosDemo
                 adapter.atualizar(todosProdutos)
-                Toast.makeText(this@HomeActivity, getString(R.string.usando_dados_locais), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@HomeActivity, "ERRO: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }

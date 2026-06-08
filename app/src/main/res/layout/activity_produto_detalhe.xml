@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- activity_produto_detalhe.xml · Pura Essência · Minimalista Natural Premium -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F7F2"
+    android:background="@color/creme_fundo"
     android:fitsSystemWindows="true">
 
-    <!-- Header fixo -->
+    <!-- ═══ HEADER ═══ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#023804"
+        android:background="@color/verde_escuro"
         android:orientation="horizontal"
-        android:padding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
         android:gravity="center_vertical">
 
         <ImageButton
@@ -24,18 +29,33 @@
             android:src="@drawable/ic_seta_voltar"
             android:contentDescription="Voltar" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="Detalhes do Produto"
-            android:textColor="#FFFDD0"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PURA ESSÊNCIA"
+                android:textColor="@color/verde_claro"
+                android:textSize="9sp"
+                android:letterSpacing="0.2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detalhes do Produto"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="serif"
+                android:textStyle="italic" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Conteúdo com scroll -->
+    <!-- ═══ CONTEÚDO SCROLLÁVEL ═══ -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,111 +68,119 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Foto grande -->
-            <ImageView
-                android:id="@+id/imgProdutoDetalhe"
-                android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:src="@mipmap/ic_launcher"
-                android:scaleType="centerCrop" />
-
-            <!-- Card com informações -->
+            <!-- Foto grande com cantos arredondados embaixo -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/verde_fundo_badge">
+
+                <ImageView
+                    android:id="@+id/imgProdutoDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card de Informações -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginTop="-20dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="#FFFDD0">
+                    android:padding="20dp">
 
-                    <!-- Categoria -->
+                    <!-- Categoria badge -->
                     <TextView
                         android:id="@+id/tvDetalheCategoria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#E8F5E9"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="3dp"
+                        android:background="@color/verde_fundo_badge"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
                         android:text="Categoria"
-                        android:textColor="#023804"
-                        android:textSize="12sp" />
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.1" />
 
                     <!-- Nome -->
                     <TextView
                         android:id="@+id/tvDetalheNome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:text="Nome do Produto"
-                        android:textColor="#1A1A1A"
+                        android:textColor="@color/verde_escuro"
                         android:textSize="22sp"
-                        android:textStyle="bold" />
+                        android:fontFamily="serif"
+                        android:textStyle="bold"
+                        android:lineSpacingExtra="2dp" />
 
                     <!-- Preço -->
                     <TextView
                         android:id="@+id/tvDetalhePreco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="8dp"
                         android:text="R$ 0,00"
-                        android:textColor="#023804"
-                        android:textSize="24sp"
+                        android:textColor="@color/verde_medio"
+                        android:textSize="26sp"
+                        android:fontFamily="serif"
                         android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="#D0D0D0" />
+                    <!-- Divisor -->
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/borda_card" android:layout_marginTop="16dp" android:layout_marginBottom="16dp" />
 
-                    <!-- Descrição -->
+                    <!-- Descrição label -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Descrição"
-                        android:textColor="#023804"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:text="DESCRIÇÃO"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15"
+                        android:layout_marginBottom="8dp" />
 
                     <TextView
                         android:id="@+id/tvDetalheDescricao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
                         android:text="Descrição completa do produto aqui."
-                        android:textColor="#444444"
+                        android:textColor="@color/texto_principal"
                         android:textSize="14sp"
-                        android:lineSpacingExtra="4dp" />
+                        android:lineSpacingExtra="5dp"
+                        android:fontFamily="serif" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="#D0D0D0" />
+                    <!-- Divisor -->
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/borda_card" android:layout_marginTop="16dp" android:layout_marginBottom="16dp" />
 
-                    <!-- Quantidade -->
+                    <!-- Quantidade label -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quantidade"
-                        android:textColor="#023804"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:text="QUANTIDADE"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15"
+                        android:layout_marginBottom="10dp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical">
 
@@ -162,19 +190,20 @@
                             android:layout_height="40dp"
                             android:text="−"
                             android:textSize="20sp"
-                            android:backgroundTint="#5D8A3E"
-                            android:textColor="#FFFFFF"
+                            android:backgroundTint="@color/verde_fundo_badge"
+                            android:textColor="@color/verde_escuro"
                             android:padding="0dp"
                             app:cornerRadius="20dp" />
 
                         <TextView
                             android:id="@+id/tvQuantidade"
-                            android:layout_width="48dp"
+                            android:layout_width="52dp"
                             android:layout_height="wrap_content"
                             android:text="1"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="#1A1A1A"
+                            android:textColor="@color/verde_escuro"
+                            android:fontFamily="serif"
                             android:gravity="center" />
 
                         <Button
@@ -183,11 +212,10 @@
                             android:layout_height="40dp"
                             android:text="+"
                             android:textSize="20sp"
-                            android:backgroundTint="#5D8A3E"
-                            android:textColor="#FFFFFF"
+                            android:backgroundTint="@color/verde_escuro"
+                            android:textColor="@color/white"
                             android:padding="0dp"
                             app:cornerRadius="20dp" />
-
                     </LinearLayout>
 
                     <!-- Botão Adicionar ao Carrinho -->
@@ -195,11 +223,12 @@
                         android:id="@+id/btnAdicionarCarrinho"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:layout_marginTop="16dp"
-                        android:backgroundTint="#023804"
-                        android:text="Adicionar ao Carrinho"
-                        android:textColor="#FFFDD0"
-                        android:textSize="16sp"
+                        android:layout_marginTop="20dp"
+                        android:backgroundTint="@color/verde_escuro"
+                        android:text="ADICIONAR AO CARRINHO"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:letterSpacing="0.08"
                         android:textStyle="bold"
                         app:cornerRadius="12dp" />
 

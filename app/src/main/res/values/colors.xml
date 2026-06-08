@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Pura Essência · Minimalista Natural Premium -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta Principal -->
+    <color name="verde_escuro">#2C3D2A</color>
+    <color name="verde_medio">#3D5C3A</color>
+    <color name="verde_claro">#8FAD88</color>
+    <color name="verde_menta">#C8D9C0</color>
+    <color name="verde_fundo_badge">#E8F0E6</color>
+
+    <!-- Neutros Naturais -->
+    <color name="creme_fundo">#F5F0E8</color>
+    <color name="creme_card">#FFFFFFFF</color>
+    <color name="borda_suave">#D4C9B0</color>
+    <color name="borda_card">#EDE8DE</color>
+    <color name="borda_input">#DDD6C8</color>
+
+    <!-- Textos -->
+    <color name="texto_principal">#2C3D2A</color>
+    <color name="texto_secundario">#B0A090</color>
+    <color name="texto_badge">#8A9E82</color>
+    <color name="texto_branco">#FFFFFF</color>
+
+    <!-- Danger -->
+    <color name="vermelho_sair">#8B0000</color>
 </resources>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- activity_main.xml · Pura Essência · Minimalista Natural Premium -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#023804"
+    android:background="@color/verde_escuro"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,48 +14,66 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="32dp"
-            app:srcCompat="@drawable/icone_essencia"
+        <!-- Logo badge arredondado -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLogo"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/creme_fundo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                app:srcCompat="@drawable/icone_essencia"
+                android:scaleType="fitCenter" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Marca -->
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Pura Essência"
-            android:textColor="#FFFDD0"
-            android:textSize="28sp"
+            android:text="PURA ESSÊNCIA"
+            android:textColor="@color/verde_menta"
+            android:textSize="11sp"
+            android:letterSpacing="0.25"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/cardLogo" />
 
         <TextView
             android:id="@+id/tvSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Bem-vindo(a)🌿"
-            android:textColor="#A8D5A2"
-            android:textSize="14sp"
+            android:text="Bem-vindo(a)"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:fontFamily="serif"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
 
+        <!-- Card de Login -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
+            android:layout_marginTop="28dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/creme_fundo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubtitulo">
@@ -63,29 +82,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp"
-                android:background="#FFFDD0">
+                android:padding="24dp">
+
+                <!-- Label E-mail -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-MAIL"
+                    android:textColor="@color/texto_badge"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="6dp" />
 
                 <EditText
                     android:id="@+id/editTextEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/fundo_input_branco"
-                    android:hint="E-mail"
+                    android:hint="seu@email.com"
                     android:inputType="textEmailAddress"
-                    android:padding="12dp"
-                    android:textColorHint="#023804" />
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
+
+                <!-- Label Senha -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SENHA"
+                    android:textColor="@color/texto_badge"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.15"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp" />
 
                 <EditText
                     android:id="@+id/editTextSenha"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/fundo_input_branco"
-                    android:hint="Senha"
+                    android:hint="••••••••"
                     android:inputType="textPassword"
-                    android:padding="12dp"
-                    android:textColorHint="#023804" />
+                    android:padding="14dp"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tvEsqueciSenha"
@@ -94,8 +136,8 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="8dp"
                     android:text="Esqueci minha senha"
-                    android:textColor="#023804"
-                    android:textSize="13sp" />
+                    android:textColor="@color/texto_badge"
+                    android:textSize="12sp" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -103,38 +145,87 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
+                    android:indeterminateTint="@color/verde_escuro"
                     android:visibility="gone" />
 
+                <!-- Botão Entrar -->
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/verde_escuro"
+                    android:text="ENTRAR"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:letterSpacing="0.1"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
+
+                <!-- Divisor -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="16dp">
 
-                    <Button
-                        android:id="@+id/button"
+                    <View
                         android:layout_width="0dp"
-                        android:layout_height="56dp"
+                        android:layout_height="1dp"
                         android:layout_weight="1"
-                        android:backgroundTint="#023804"
-                        android:text="LOGIN"
-                        android:textColor="#FFFDD0"
-                        android:textSize="16sp"
-                        app:cornerRadius="12dp" />
+                        android:background="@color/borda_card" />
 
-                    <Button
-                        android:id="@+id/btnCadastrar"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="ou"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="12sp" />
+
+                    <View
                         android:layout_width="0dp"
-                        android:layout_height="56dp"
-                        android:layout_marginStart="12dp"
+                        android:layout_height="1dp"
                         android:layout_weight="1"
-                        android:backgroundTint="#EDE8D0"
-                        android:text="CADASTRAR"
-                        android:textColor="#023804"
-                        android:textSize="16sp"
-                        app:cornerRadius="12dp" />
+                        android:background="@color/borda_card" />
                 </LinearLayout>
+
+                <!-- Botão Cadastrar -->
+                <Button
+                    android:id="@+id/btnCadastrar"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:backgroundTint="@color/white"
+                    app:strokeColor="@color/borda_suave"
+                    app:strokeWidth="1dp"
+                    android:text="CRIAR CONTA"
+                    android:textColor="@color/verde_escuro"
+                    android:textSize="13sp"
+                    android:letterSpacing="0.1"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.Material3.Button.OutlinedButton" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <!-- Rodapé -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:text="🌿 Pura Essência · Natureza e bem-estar"
+            android:textColor="@color/verde_claro"
+            android:textSize="11sp"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardLogin" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

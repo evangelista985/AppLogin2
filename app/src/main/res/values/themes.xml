@@ -1,9 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Pura Essência · Minimalista Natural Premium -->
     <style name="Base.Theme.AppLoginTest" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/verde_escuro</item>
+        <item name="colorPrimaryVariant">@color/verde_medio</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/verde_claro</item>
+        <item name="colorOnSecondary">@color/verde_escuro</item>
+        <item name="android:windowBackground">@color/creme_fundo</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="Theme.AppLoginTest" parent="Base.Theme.AppLoginTest" />
+
+    <!-- Estilo de Input padrão do app -->
+    <style name="InputNatural">
+        <item name="android:background">@drawable/fundo_input_branco</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textColor">@color/texto_principal</item>
+        <item name="android:textColorHint">@color/texto_secundario</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Botão primário -->
+    <style name="BotaoPrimario">
+        <item name="android:backgroundTint">@color/verde_escuro</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+    <!-- Botão secundário -->
+    <style name="BotaoSecundario">
+        <item name="android:backgroundTint">@color/borda_card</item>
+        <item name="android:textColor">@color/verde_escuro</item>
+        <item name="android:textSize">14sp</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
 </resources>
