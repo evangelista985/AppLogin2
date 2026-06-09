@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="📦 Endereço de entrega"
+                android:text="Endereço de entrega"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -290,7 +290,7 @@
                         android:maxLength="8"
                         android:padding="11dp"
                         android:textSize="13sp"
-                        android:textColorHint="#AAAAAA" />
+                        android:textColorHint="#84B067" />
 
                     <EditText
                         android:id="@+id/etRua"
@@ -302,7 +302,7 @@
                         android:inputType="text"
                         android:padding="11dp"
                         android:textSize="13sp"
-                        android:textColorHint="#AAAAAA" />
+                        android:textColorHint="#84B067" />
 
                     <EditText
                         android:id="@+id/etNumero"
@@ -314,7 +314,7 @@
                         android:inputType="text"
                         android:padding="11dp"
                         android:textSize="13sp"
-                        android:textColorHint="#AAAAAA" />
+                        android:textColorHint="#84B067" />
 
                     <EditText
                         android:id="@+id/etBairro"
@@ -326,7 +326,7 @@
                         android:inputType="text"
                         android:padding="11dp"
                         android:textSize="13sp"
-                        android:textColorHint="#AAAAAA" />
+                        android:textColorHint="#84B067" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -345,7 +345,7 @@
                             android:inputType="text"
                             android:padding="11dp"
                             android:textSize="13sp"
-                            android:textColorHint="#AAAAAA" />
+                            android:textColorHint="#84B067" />
 
                         <EditText
                             android:id="@+id/etEstado"
@@ -359,7 +359,7 @@
                             android:maxLength="2"
                             android:padding="11dp"
                             android:textSize="13sp"
-                            android:textColorHint="#AAAAAA" />
+                            android:textColorHint="#84B067" />
                     </LinearLayout>
 
                     <EditText
@@ -372,7 +372,7 @@
                         android:inputType="text"
                         android:padding="11dp"
                         android:textSize="13sp"
-                        android:textColorHint="#AAAAAA" />
+                        android:textColorHint="#84B067" />
 
                     <Button
                         android:id="@+id/btnCalcularFrete"
