@@ -129,14 +129,6 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="14dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TOTAL"
-                    android:textColor="@color/verde_claro"
-                    android:textSize="10sp"
-                    android:letterSpacing="0.15" />
 
                 <TextView
                     android:id="@+id/tvTotal"
