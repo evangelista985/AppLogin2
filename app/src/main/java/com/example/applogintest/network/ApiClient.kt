@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
 
-    const val BASE_URL = "https://projpuraessenciareact.onrender.com/"
+    const val BASE_URL = "https://projpuraessenciareact.onrender.com"
 
     val instance: ApiService by lazy {
         Retrofit.Builder()
