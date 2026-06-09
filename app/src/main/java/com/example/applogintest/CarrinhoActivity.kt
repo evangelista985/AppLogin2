@@ -28,9 +28,9 @@ class CarrinhoActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener { finish() }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerCarrinho)
-        val tvTotal      = findViewById<TextView>(R.id.tvTotal)
-        val tvVazio      = findViewById<TextView>(R.id.tvCarrinhoVazio)
+        val recyclerView  = findViewById<RecyclerView>(R.id.recyclerCarrinho)
+        val tvTotal       = findViewById<TextView>(R.id.tvTotal)
+        val tvVazio       = findViewById<View>(R.id.tvCarrinhoVazio)
         val btnProsseguir = findViewById<Button>(R.id.btnProsseguir)
 
         adapter = CarrinhoAdapter(CarrinhoManager.getItens()) { produtoId ->
@@ -53,7 +53,7 @@ class CarrinhoActivity : AppCompatActivity() {
         }
     }
 
-    private fun atualizarTela(tvTotal: TextView, tvVazio: TextView) {
+    private fun atualizarTela(tvTotal: TextView, tvVazio: View) {
         tvTotal.text = "Total: R$ %.2f".format(CarrinhoManager.total())
         tvVazio.visibility = if (CarrinhoManager.getItens().isEmpty()) View.VISIBLE else View.GONE
     }
