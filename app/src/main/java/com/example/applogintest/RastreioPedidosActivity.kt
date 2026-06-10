@@ -29,7 +29,7 @@ class RastreioPedidosActivity : AppCompatActivity() {
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener { finish() }
 
         val recycler    = findViewById<RecyclerView>(R.id.recyclerPedidos)
-        val tvVazio     = findViewById<TextView>(R.id.tvVazio)
+        val tvVazio     = findViewById<View>(R.id.tvVazio)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
         adapter = PedidoAdapter(emptyList())
@@ -46,7 +46,7 @@ class RastreioPedidosActivity : AppCompatActivity() {
         }, 30000)
     }
 
-    private fun carregarPedidos(tvVazio: TextView, progressBar: ProgressBar) {
+    private fun carregarPedidos(tvVazio: View, progressBar: ProgressBar) {
         progressBar.visibility = View.VISIBLE
         val token = SessionManager.getBearerToken(this)
 

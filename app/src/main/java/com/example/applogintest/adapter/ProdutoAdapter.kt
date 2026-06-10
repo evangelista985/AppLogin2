@@ -41,16 +41,14 @@ class ProdutoAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val produto = produtos[position]
 
-        holder.tvNome.text      = produto.nome
-        holder.tvDescricao.text = produto.descricao
-        holder.tvPreco.text     = "R$ %.2f".format(produto.preco)
-        holder.tvCategoria.text = produto.categoria_nome.replaceFirstChar { it.uppercase() }
+        holder.tvNome.text      = produto.nome ?: ""
+        holder.tvDescricao.text = produto.descricao ?: ""
+        holder.tvPreco.text     = "R$ %.2f".format(produto.preco ?: 0.0)
+        holder.tvCategoria.text = produto.categoria_nome
+            ?.replaceFirstChar { it.uppercase() } ?: ""
 
-        // Monta URL completa da imagem
-        // O banco guarda: /img/chaHortela.jpg
-        // Precisamos:     http://IP:3001/img/chaHortela.jpg
         val urlImagem = when {
-            produto.imagem.isBlank()          -> null
+            produto.imagem.isNullOrBlank()    -> null
             produto.imagem.startsWith("http") -> produto.imagem
             else -> ApiClient.BASE_URL.trimEnd('/') + produto.imagem
         }
@@ -81,7 +79,7 @@ class ProdutoAdapter(
                 intent.putExtra("produto_descricao", produto.descricao)
                 intent.putExtra("produto_preco", produto.preco)
                 intent.putExtra("produto_imagem", urlImagem ?: "")
-                intent.putExtra("produto_categoria", produto.categoria_nome)
+                intent.putExtra("produto_categoria", produto.categoria_nome ?: "")
                 context.startActivity(intent)
             }
         }

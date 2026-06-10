@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_home.xml · Pura Essência · Minimalista Natural Premium -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,36 +37,19 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
-                    <!-- Logo badge -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="0dp"
-                        app:cardBackgroundColor="@color/creme_fundo">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:padding="0dp"
-                            app:srcCompat="@drawable/logo"
-                            android:scaleType="fitCenter" />
-                    </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="210dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/logo_corrido"
+                        android:scaleType="fitStart"
+                        android:adjustViewBounds="true" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PURA ESSÊNCIA"
-                            android:textColor="@color/verde_claro"
-                            android:textSize="9sp"
-                            android:letterSpacing="0.2" />
+                        android:orientation="vertical"
+                        android:gravity="end">
 
                         <TextView
                             android:id="@+id/tvSaudacao"
@@ -76,8 +58,7 @@
                             android:text="Olá! "
                             android:textColor="@color/white"
                             android:textSize="13sp"
-                            android:fontFamily="serif"
-                            android:textStyle="italic"
+                            android:fontFamily="sans-serif"
                             android:maxLines="1"
                             android:ellipsize="end" />
                     </LinearLayout>
@@ -90,7 +71,7 @@
                     <ImageButton android:id="@+id/btnLogout" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:src="@drawable/ic_logout" android:backgroundTint="@android:color/transparent" />
                 </LinearLayout>
 
-                <!-- Barra de busca pill -->
+                <!-- ═══ BARRA DE BUSCA COM BOTÃO X ═══ -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
@@ -99,7 +80,7 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:paddingStart="14dp"
-                    android:paddingEnd="14dp">
+                    android:paddingEnd="4dp">
 
                     <ImageView
                         android:layout_width="14dp"
@@ -118,11 +99,24 @@
                         android:textColorHint="@color/texto_secundario"
                         android:textColor="@color/texto_principal"
                         android:textSize="13sp"
-                        android:fontFamily="serif"
-                        android:textStyle="italic"
+                        android:fontFamily="sans-serif"
                         android:inputType="text"
                         android:imeOptions="actionSearch"
                         android:singleLine="true" />
+
+                    <!-- Botão X para limpar busca -->
+                    <ImageView
+                        android:id="@+id/ivLimparBusca"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="6dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:visibility="gone"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:tint="@color/texto_secundario" />
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -136,7 +130,6 @@
                 android:paddingEnd="14dp"
                 android:paddingTop="14dp">
 
-                <!-- Banner arredondado -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,7 +142,6 @@
                         android:layout_height="150dp" />
                 </androidx.cardview.widget.CardView>
 
-                <!-- Indicadores -->
                 <LinearLayout
                     android:id="@+id/layoutIndicadores"
                     android:layout_width="wrap_content"
@@ -189,7 +181,8 @@
                         android:text="Todos"
                         android:textColor="@color/verde_menta"
                         android:textSize="10sp"
-                        android:letterSpacing="0.1" />
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.05" />
 
                     <TextView
                         android:id="@+id/chipChas"
@@ -203,7 +196,8 @@
                         android:text="Chás"
                         android:textColor="@color/verde_menta"
                         android:textSize="10sp"
-                        android:letterSpacing="0.1" />
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.05" />
 
                     <TextView
                         android:id="@+id/chipTemperos"
@@ -217,7 +211,8 @@
                         android:text="Temperos"
                         android:textColor="@color/verde_menta"
                         android:textSize="10sp"
-                        android:letterSpacing="0.1" />
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.05" />
 
                     <TextView
                         android:id="@+id/chipErvas"
@@ -231,7 +226,8 @@
                         android:text="Ervas"
                         android:textColor="@color/verde_menta"
                         android:textSize="10sp"
-                        android:letterSpacing="0.1" />
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.05" />
 
                     <TextView
                         android:id="@+id/chipCosmeticos"
@@ -244,7 +240,8 @@
                         android:text="Cosméticos"
                         android:textColor="@color/verde_menta"
                         android:textSize="10sp"
-                        android:letterSpacing="0.1" />
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.05" />
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -260,8 +257,7 @@
                 android:layout_marginBottom="4dp"
                 android:visibility="gone" />
 
-            <!-- ═══ GRADE DE PRODUTOS (2 por linha) ═══ -->
-            <!-- ATENÇÃO: No Java/Kotlin configure o GridLayoutManager com spanCount=2 -->
+            <!-- ═══ GRADE DE PRODUTOS ═══ -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerProdutos"
                 android:layout_width="match_parent"
@@ -290,8 +286,6 @@
         android:paddingTop="6dp"
         android:paddingBottom="10dp">
 
-        <!-- Borda topo suave -->
-
         <LinearLayout
             android:id="@+id/navInicio"
             android:layout_width="0dp"
@@ -302,7 +296,7 @@
             android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_home" app:tint="@color/verde_escuro" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Início" android:textSize="9sp" android:textColor="@color/verde_escuro" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Início" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/verde_escuro" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -318,7 +312,7 @@
                 <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/baseline_shopping_cart_24" app:tint="@color/texto_secundario" />
                 <TextView android:id="@+id/tvNavCarrinhoQtd" android:layout_width="15dp" android:layout_height="15dp" android:layout_gravity="top|end" android:background="@color/verde_medio" android:gravity="center" android:text="0" android:textColor="@color/white" android:textSize="8sp" android:visibility="gone" />
             </FrameLayout>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Carrinho" android:textSize="9sp" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Carrinho" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -331,7 +325,7 @@
             android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_pedidos" app:tint="@color/texto_secundario" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pedidos" android:textSize="9sp" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pedidos" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -344,7 +338,7 @@
             android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_account_settings" app:tint="@color/texto_secundario" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Admin" android:textSize="9sp" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Admin" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -357,7 +351,7 @@
             android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_logout" app:tint="@color/vermelho_sair" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sair" android:textSize="9sp" android:textColor="@color/vermelho_sair" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sair" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/vermelho_sair" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
 
     </LinearLayout>

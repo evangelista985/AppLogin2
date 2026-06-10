@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- item_produto.xml · Grid 2 colunas · Minimalista Natural Premium -->
-<!-- IMPORTANTE: No Java/Kotlin usar GridLayoutManager(context, 2) -->
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="290dp"
     android:layout_margin="5dp"
     app:cardCornerRadius="14dp"
     app:cardElevation="0dp"
     app:cardBackgroundColor="@color/white">
 
-    <!-- Borda suave via stroke não disponível no CardView, usamos background -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="11dp"
         android:gravity="center_horizontal">
@@ -43,24 +40,26 @@
             android:layout_marginTop="8dp"
             android:text="Categoria"
             android:textColor="@color/texto_badge"
-            android:textSize="9sp"
-            android:letterSpacing="0.1" />
+            android:textSize="10sp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.05" />
 
         <!-- Nome do produto -->
         <TextView
             android:id="@+id/tvProdutoNome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginTop="3dp"
             android:text="Nome do Produto"
             android:textColor="@color/verde_escuro"
             android:textSize="13sp"
-            android:fontFamily="serif"
-            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="2"
             android:ellipsize="end"
             android:gravity="start"
-            android:lineSpacingExtra="1dp" />
+            android:lineSpacingExtra="2dp"
+            android:lineSpacingMultiplier="1.1" />
 
         <!-- Descrição (oculta no grid) -->
         <TextView
@@ -71,6 +70,7 @@
             android:text="Descrição"
             android:textColor="@color/texto_secundario"
             android:textSize="11sp"
+            android:fontFamily="sans-serif"
             android:maxLines="1"
             android:ellipsize="end"
             android:visibility="gone" />
@@ -83,22 +83,27 @@
             android:layout_marginTop="5dp"
             android:text="R$ 0,00"
             android:textColor="@color/verde_medio"
-            android:textSize="13sp"
-            android:fontFamily="serif"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
             android:textStyle="bold" />
 
         <!-- Botão Ver Detalhes -->
         <Button
             android:id="@+id/btnVerDetalhes"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
+            android:layout_height="36dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/verde_escuro"
             android:text="VER DETALHES"
             android:textColor="@color/white"
-            android:textSize="9sp"
-            android:letterSpacing="0.08"
+            android:textSize="10sp"
+            android:letterSpacing="0"
             android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             app:cornerRadius="9dp" />
 
     </LinearLayout>

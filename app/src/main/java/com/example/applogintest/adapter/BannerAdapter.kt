@@ -19,6 +19,7 @@ class BannerAdapter(
 ) : RecyclerView.Adapter<BannerAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val rootView    = view
         val imgBanner   = view.findViewById<ImageView>(R.id.imgBanner)
         val tvTitulo    = view.findViewById<TextView>(R.id.tvBannerTitulo)
         val tvSubtitulo = view.findViewById<TextView>(R.id.tvBannerSubtitulo)
@@ -32,27 +33,32 @@ class BannerAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val banner = banners[position]
-        holder.tvTitulo.text    = banner.titulo
-        holder.tvSubtitulo.text = banner.subtitulo
+        holder.tvTitulo.text    = banner.titulo ?: ""
+        holder.tvSubtitulo.text = banner.subtitulo ?: ""
 
         val urlImagem = when {
-            banner.imagem.isBlank()          -> null
+            banner.imagem.isNullOrBlank()    -> null
             banner.imagem.startsWith("http") -> banner.imagem
             else -> ApiClient.BASE_URL.trimEnd('/') + banner.imagem
         }
 
+        // Aplica cor de fundo no rootView
+        try {
+            val cor = if (banner.cor_fundo.isNullOrBlank()) "#1B4D1A" else banner.cor_fundo
+            holder.rootView.setBackgroundColor(Color.parseColor(cor))
+        } catch (e: Exception) {
+            holder.rootView.setBackgroundColor(Color.parseColor("#1B4D1A"))
+        }
+
         if (urlImagem != null) {
+            holder.imgBanner.visibility = View.VISIBLE
             Glide.with(holder.itemView.context)
                 .load(urlImagem)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(holder.imgBanner)
         } else {
-            try {
-                holder.imgBanner.setBackgroundColor(Color.parseColor(banner.cor_fundo))
-            } catch (e: Exception) {
-                holder.imgBanner.setBackgroundColor(Color.parseColor("#1B4D1A"))
-            }
+            holder.imgBanner.visibility = View.INVISIBLE
         }
     }
 

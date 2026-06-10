@@ -1,6 +1,7 @@
 @file:Suppress("SpellCheckingInspection")
 package com.example.applogintest
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -9,9 +10,10 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -46,9 +48,10 @@ class HomeActivity : AppCompatActivity() {
         val tvSaudacao = findViewById<TextView>(R.id.tvSaudacao)
 
         if (logado) {
-            tvSaudacao.text = getString(R.string.saudacao, SessionManager.getNome(this))
+            tvSaudacao.text = "Olá, ${SessionManager.getNome(this)}"
+            tvSaudacao.visibility = View.VISIBLE
         } else {
-            tvSaudacao.text = getString(R.string.boas_vindas_catalogo)
+            tvSaudacao.visibility = View.GONE
         }
 
         // Botões ocultos no header
@@ -81,17 +84,15 @@ class HomeActivity : AppCompatActivity() {
         val viewPager = findViewById<ViewPager2>(R.id.viewPagerBanner)
         val layoutIndicadores = findViewById<LinearLayout>(R.id.layoutIndicadores)
 
-        // Inicia com banners padrão enquanto carrega do servidor
         val bannersDefault = listOf(
-            BannerItem(titulo = "🌿 Bem-vindo", subtitulo = "Natureza e saúde para você", cor_fundo = "#1B4D1A"),
-            BannerItem(titulo = "✨ Cosméticos", subtitulo = "Cuide da sua pele", cor_fundo = "#4A2D6B"),
-            BannerItem(titulo = "🌶 Temperos", subtitulo = "Sabor e saúde", cor_fundo = "#7A2A0A")
+            BannerItem(titulo = "Bem-vindo", subtitulo = "Natureza e saúde para você", cor_fundo = "#1B4D1A"),
+            BannerItem(titulo = "Cosméticos", subtitulo = "Cuide da sua pele", cor_fundo = "#4A2D6B"),
+            BannerItem(titulo = "Temperos", subtitulo = "Sabor e saúde", cor_fundo = "#7A2A0A")
         )
 
         bannerAdapter = BannerAdapter(bannersDefault.toMutableList())
         viewPager.adapter = bannerAdapter
 
-        // Indicadores
         fun atualizarIndicadores(total: Int) {
             layoutIndicadores.removeAllViews()
             val dots = Array(total) { View(this) }
@@ -120,7 +121,6 @@ class HomeActivity : AppCompatActivity() {
 
         atualizarIndicadores(bannersDefault.size)
 
-        // Auto scroll
         bannerRunnable = object : Runnable {
             override fun run() {
                 val next = (viewPager.currentItem + 1) % (bannerAdapter.itemCount)
@@ -135,31 +135,56 @@ class HomeActivity : AppCompatActivity() {
         ApiClient.instance.listarBanners().enqueue(object : Callback<List<BannerItem>> {
             override fun onResponse(call: Call<List<BannerItem>>, response: Response<List<BannerItem>>) {
                 if (response.isSuccessful && !response.body().isNullOrEmpty()) {
-                    val banners = response.body()!!
-                    bannerAdapter.atualizarBanners(banners)
+                    bannerAdapter.atualizarBanners(response.body()!!)
                 }
             }
-            override fun onFailure(call: Call<List<BannerItem>>, t: Throwable) {
-                // Mantém banners padrão
-            }
+            override fun onFailure(call: Call<List<BannerItem>>, t: Throwable) {}
         })
     }
 
+    // ═══ BUSCA COM BOTÃO X ═══
     private fun configurarBusca() {
-        findViewById<EditText>(R.id.etBusca).addTextChangedListener(object : TextWatcher {
+        val etBusca = findViewById<EditText>(R.id.etBusca)
+        val ivLimparBusca = findViewById<ImageView>(R.id.ivLimparBusca)
+
+        etBusca.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 val query = s.toString().trim().lowercase()
+
+                // Mostra ou esconde o X
+                ivLimparBusca.visibility = if (query.isEmpty()) View.GONE else View.VISIBLE
+
+                // Filtra os produtos
                 val filtrados = if (query.isEmpty()) todosProdutos
                 else todosProdutos.filter {
                     it.nome.lowercase().contains(query) ||
                             it.descricao.lowercase().contains(query) ||
-                            it.categoria_nome.lowercase().contains(query)
+                            (it.categoria_nome?.lowercase()?.contains(query) ?: false)
                 }
                 adapter.atualizar(filtrados)
             }
         })
+
+        // Clique no X → limpa tudo
+        ivLimparBusca.setOnClickListener {
+            etBusca.setText("")
+            etBusca.clearFocus()
+            ivLimparBusca.visibility = View.GONE
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(etBusca.windowToken, 0)
+            adapter.atualizar(todosProdutos)
+        }
+
+        // Busca ao pressionar "Search" no teclado
+        etBusca.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(etBusca.windowToken, 0)
+                true
+            } else false
+        }
     }
 
     private fun configurarFiltros() {
@@ -185,10 +210,10 @@ class HomeActivity : AppCompatActivity() {
                 }
                 val filtrados = when (chip.filtro) {
                     "todos"      -> todosProdutos
-                    "chas"       -> todosProdutos.filter { it.categoria_nome.lowercase().contains("ch") }
-                    "temperos"   -> todosProdutos.filter { it.categoria_nome.lowercase().contains("tempero") }
-                    "ervas"      -> todosProdutos.filter { it.categoria_nome.lowercase().contains("erva") }
-                    "cosmeticos" -> todosProdutos.filter { it.categoria_nome.lowercase().contains("cosm") }
+                    "chas"       -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("ch") ?: false }
+                    "temperos"   -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("tempero") ?: false }
+                    "ervas"      -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("erva") ?: false }
+                    "cosmeticos" -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("cosm") ?: false }
                     else         -> todosProdutos
                 }
                 adapter.atualizar(filtrados)
@@ -222,7 +247,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun configurarRecycler(logado: Boolean) {
         adapter = ProdutoAdapter(emptyList(), logado) { produto ->
-            Toast.makeText(this, getString(R.string.produto_adicionado, produto.nome), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${produto.nome} adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
             atualizarBadgeCarrinho()
         }
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerProdutos)
@@ -242,10 +267,9 @@ class HomeActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<List<Produto>>, t: Throwable) {
                 progressBar.visibility = View.GONE
-                android.util.Log.e("API_ERRO", "Falha: ${t.javaClass.simpleName} - ${t.message}")
                 todosProdutos = produtosDemo
                 adapter.atualizar(todosProdutos)
-                Toast.makeText(this@HomeActivity, "ERRO: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@HomeActivity, "Erro de conexão", Toast.LENGTH_LONG).show()
             }
         })
     }

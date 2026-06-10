@@ -29,30 +29,17 @@
             android:src="@drawable/ic_seta_voltar"
             android:contentDescription="Voltar" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:orientation="vertical">
+            android:text="Detalhes do Produto"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:fontFamily="serif"
+            android:textStyle="italic" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PURA ESSÊNCIA"
-                android:textColor="@color/verde_claro"
-                android:textSize="9sp"
-                android:letterSpacing="0.2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Detalhes do Produto"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:fontFamily="serif"
-                android:textStyle="italic" />
-        </LinearLayout>
     </LinearLayout>
 
     <!-- ═══ CONTEÚDO SCROLLÁVEL ═══ -->

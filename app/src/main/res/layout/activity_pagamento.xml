@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <!-- ═══ HEADER ═══ -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,7 +21,7 @@
             android:orientation="horizontal"
             android:paddingStart="12dp"
             android:paddingEnd="16dp"
-            android:paddingTop="14dp"
+            android:paddingTop="28dp"
             android:paddingBottom="14dp">
 
             <ImageButton
@@ -31,30 +32,17 @@
                 android:src="@drawable/ic_seta_voltar"
                 android:contentDescription="Voltar" />
 
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:orientation="vertical">
+                android:text="Pagamento"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="serif"
+                android:textStyle="italic" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PURA ESSÊNCIA"
-                    android:textColor="@color/verde_claro"
-                    android:textSize="9sp"
-                    android:letterSpacing="0.2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pagamento"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:fontFamily="serif"
-                    android:textStyle="italic" />
-            </LinearLayout>
         </LinearLayout>
 
         <!-- ═══ RESUMO DO PEDIDO ═══ -->
@@ -207,14 +195,12 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <!-- Cartão visual flip -->
                         <FrameLayout
                             android:id="@+id/frameCartao"
                             android:layout_width="match_parent"
                             android:layout_height="180dp"
                             android:layout_marginBottom="16dp">
 
-                            <!-- Frente do cartão -->
                             <LinearLayout
                                 android:id="@+id/cardFrente"
                                 android:layout_width="match_parent"
@@ -224,7 +210,6 @@
                                 android:background="@drawable/bg_cartao_verde"
                                 android:visibility="visible">
 
-                                <!-- Badge bandeira detectada -->
                                 <LinearLayout
                                     android:id="@+id/layoutBadgeBandeira"
                                     android:layout_width="wrap_content"
@@ -312,7 +297,6 @@
                                 </LinearLayout>
                             </LinearLayout>
 
-                            <!-- Verso do cartão -->
                             <LinearLayout
                                 android:id="@+id/cardVerso"
                                 android:layout_width="match_parent"
@@ -356,7 +340,6 @@
                             </LinearLayout>
                         </FrameLayout>
 
-                        <!-- Campos do formulário -->
                         <EditText
                             android:id="@+id/etNumeroCartao"
                             android:layout_width="match_parent"
