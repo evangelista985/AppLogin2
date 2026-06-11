@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -26,7 +27,7 @@ import com.example.applogintest.util.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import androidx.appcompat.app.AppCompatDelegate
+
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var adapter: ProdutoAdapter
@@ -61,7 +62,6 @@ class HomeActivity : AppCompatActivity() {
             tvSaudacao.visibility = View.GONE
         }
 
-        // Botões ocultos no header
         findViewById<ImageButton>(R.id.btnCarrinho).setOnClickListener {
             startActivity(Intent(this, CarrinhoActivity::class.java))
         }
@@ -149,7 +149,6 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    // ═══ BUSCA COM BOTÃO X ═══
     private fun configurarBusca() {
         val etBusca = findViewById<EditText>(R.id.etBusca)
         val ivLimparBusca = findViewById<ImageView>(R.id.ivLimparBusca)
@@ -159,11 +158,7 @@ class HomeActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 val query = s.toString().trim().lowercase()
-
-                // Mostra ou esconde o X
                 ivLimparBusca.visibility = if (query.isEmpty()) View.GONE else View.VISIBLE
-
-                // Filtra os produtos
                 val filtrados = if (query.isEmpty()) todosProdutos
                 else todosProdutos.filter {
                     it.nome.lowercase().contains(query) ||
@@ -174,7 +169,6 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
-        // Clique no X → limpa tudo
         ivLimparBusca.setOnClickListener {
             etBusca.setText("")
             etBusca.clearFocus()
@@ -184,7 +178,6 @@ class HomeActivity : AppCompatActivity() {
             adapter.atualizar(todosProdutos)
         }
 
-        // Busca ao pressionar "Search" no teclado
         etBusca.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -197,10 +190,10 @@ class HomeActivity : AppCompatActivity() {
     private fun configurarFiltros() {
         data class Chip(val id: Int, val filtro: String)
         val chips = listOf(
-            Chip(R.id.chipTodos, "todos"),
-            Chip(R.id.chipChas, "chas"),
-            Chip(R.id.chipTemperos, "temperos"),
-            Chip(R.id.chipErvas, "ervas"),
+            Chip(R.id.chipTodos,      "todos"),
+            Chip(R.id.chipChas,       "chas"),
+            Chip(R.id.chipTemperos,   "temperos"),
+            Chip(R.id.chipErvas,      "organicos"),
             Chip(R.id.chipCosmeticos, "cosmeticos")
         )
         chips.forEach { chip ->
@@ -219,7 +212,7 @@ class HomeActivity : AppCompatActivity() {
                     "todos"      -> todosProdutos
                     "chas"       -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("ch") ?: false }
                     "temperos"   -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("tempero") ?: false }
-                    "ervas"      -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("erva") ?: false }
+                    "organicos"  -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("org") ?: false }
                     "cosmeticos" -> todosProdutos.filter { it.categoria_nome?.lowercase()?.contains("cosm") ?: false }
                     else         -> todosProdutos
                 }

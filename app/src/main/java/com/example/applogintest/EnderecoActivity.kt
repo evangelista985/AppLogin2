@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import com.example.applogintest.model.AtualizarEnderecoRequest
 import com.example.applogintest.network.ApiClient
 import com.example.applogintest.util.SessionManager
@@ -22,7 +23,6 @@ import retrofit2.http.Header
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
-// ── ViaCEP ────────────────────────────────────────────────
 data class ViaCepResponse(
     val logradouro: String?,
     val bairro: String?,
@@ -36,9 +36,6 @@ interface ViaCepService {
     fun buscarCep(@Path("cep") cep: String): Call<ViaCepResponse>
 }
 
-// ── Atualizar endereço no backend ─────────────────────────
-
-
 interface ClienteService {
     @PUT("api/clientes/endereco")
     fun atualizarEndereco(
@@ -46,7 +43,6 @@ interface ClienteService {
         @Body body: AtualizarEnderecoRequest
     ): Call<Map<String, String>>
 }
-// ─────────────────────────────────────────────────────────
 
 enum class OpcaoEndereco { CADASTRO, TEMPORARIO, ATUALIZAR, NENHUMA }
 
@@ -70,38 +66,31 @@ class EnderecoActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener { finish() }
 
-        // Views — opções
-        val optCadastro   = findViewById<LinearLayout>(R.id.optCadastro)
-        val optTemporario = findViewById<LinearLayout>(R.id.optTemporario)
-        val optAtualizar  = findViewById<LinearLayout>(R.id.optAtualizar)
+        val optCadastro        = findViewById<LinearLayout>(R.id.optCadastro)
+        val optTemporario      = findViewById<LinearLayout>(R.id.optTemporario)
+        val optAtualizar       = findViewById<LinearLayout>(R.id.optAtualizar)
+        val radioCadastro      = findViewById<View>(R.id.radioCadastro)
+        val radioTemporario    = findViewById<View>(R.id.radioTemporario)
+        val radioAtualizar     = findViewById<View>(R.id.radioAtualizar)
+        val tvEnderecoSalvo    = findViewById<TextView>(R.id.tvEnderecoSalvo)
+        val layoutFormEndereco = findViewById<LinearLayout>(R.id.layoutFormEndereco)
+        val layoutFreteCadastro= findViewById<LinearLayout>(R.id.layoutFreteCadastro)
+        val infoBoxTemporario  = findViewById<LinearLayout>(R.id.infoBoxTemporario)
+        val tvSecaoTag         = findViewById<TextView>(R.id.tvSecaoTag)
+        val etCep              = findViewById<EditText>(R.id.etCep)
+        val etRua              = findViewById<EditText>(R.id.etRua)
+        val etNumero           = findViewById<EditText>(R.id.etNumero)
+        val etBairro           = findViewById<EditText>(R.id.etBairro)
+        val etCidade           = findViewById<EditText>(R.id.etCidade)
+        val etEstado           = findViewById<EditText>(R.id.etEstado)
+        val etComplemento      = findViewById<EditText>(R.id.etComplemento)
+        val btnCalcularFrete   = findViewById<Button>(R.id.btnCalcularFrete)
+        val tvFrete            = findViewById<TextView>(R.id.tvFrete)
+        val btnCalcularFreteCad= findViewById<Button>(R.id.btnCalcularFreteCadastro)
+        val tvFreteCad         = findViewById<TextView>(R.id.tvFreteCadastro)
+        val btnProsseguir      = findViewById<Button>(R.id.btnProsseguirPagamento)
+        val scrollView         = findViewById<ScrollView>(R.id.scrollViewEndereco)
 
-        // Views — radio dots
-        val radioCadastro   = findViewById<View>(R.id.radioCadastro)
-        val radioTemporario = findViewById<View>(R.id.radioTemporario)
-        val radioAtualizar  = findViewById<View>(R.id.radioAtualizar)
-
-        // Views — endereço salvo
-        val tvEnderecoSalvo = findViewById<TextView>(R.id.tvEnderecoSalvo)
-
-        // Views — formulário
-        val layoutFormEndereco   = findViewById<LinearLayout>(R.id.layoutFormEndereco)
-        val layoutFreteCadastro  = findViewById<LinearLayout>(R.id.layoutFreteCadastro)
-        val infoBoxTemporario    = findViewById<LinearLayout>(R.id.infoBoxTemporario)
-        val tvSecaoTag           = findViewById<TextView>(R.id.tvSecaoTag)
-        val etCep                = findViewById<EditText>(R.id.etCep)
-        val etRua                = findViewById<EditText>(R.id.etRua)
-        val etNumero             = findViewById<EditText>(R.id.etNumero)
-        val etBairro             = findViewById<EditText>(R.id.etBairro)
-        val etCidade             = findViewById<EditText>(R.id.etCidade)
-        val etEstado             = findViewById<EditText>(R.id.etEstado)
-        val etComplemento        = findViewById<EditText>(R.id.etComplemento)
-        val btnCalcularFrete     = findViewById<Button>(R.id.btnCalcularFrete)
-        val tvFrete              = findViewById<TextView>(R.id.tvFrete)
-        val btnCalcularFreteCad  = findViewById<Button>(R.id.btnCalcularFreteCadastro)
-        val tvFreteCad           = findViewById<TextView>(R.id.tvFreteCadastro)
-        val btnProsseguir        = findViewById<Button>(R.id.btnProsseguirPagamento)
-
-        // Preenche endereço do cadastro na opção 1
         val temEndereco = SessionManager.temEnderecoCompleto(this)
         if (temEndereco) {
             tvEnderecoSalvo.text =
@@ -114,14 +103,12 @@ class EnderecoActivity : AppCompatActivity() {
             optCadastro.isEnabled = false
         }
 
-        // ── Seleção de opção ──────────────────────────────────────
         fun selecionarOpcao(opcao: OpcaoEndereco) {
             opcaoSelecionada = opcao
             freteValor = 0.0
             tvFrete.visibility = View.GONE
             tvFreteCad.visibility = View.GONE
 
-            // Reset visual
             listOf(optCadastro, optTemporario, optAtualizar).forEach {
                 it.setBackgroundResource(R.drawable.bg_opcao_inativa)
             }
@@ -144,6 +131,14 @@ class EnderecoActivity : AppCompatActivity() {
                     layoutFreteCadastro.visibility = View.GONE
                     infoBoxTemporario.visibility = View.VISIBLE
                     tvSecaoTag.text = "Informe o endereço de entrega"
+                    scrollView.post {
+                        val location = IntArray(2)
+                        layoutFormEndereco.getLocationOnScreen(location)
+                        val scrollLocation = IntArray(2)
+                        scrollView.getLocationOnScreen(scrollLocation)
+                        val scrollTo = scrollView.scrollY + (location[1] - scrollLocation[1]) - 1
+                        scrollView.smoothScrollTo(0, scrollTo)
+                    }
                 }
                 OpcaoEndereco.ATUALIZAR -> {
                     optAtualizar.setBackgroundResource(R.drawable.bg_opcao_ativa)
@@ -152,7 +147,16 @@ class EnderecoActivity : AppCompatActivity() {
                     layoutFreteCadastro.visibility = View.GONE
                     infoBoxTemporario.visibility = View.GONE
                     tvSecaoTag.text = "Novo endereço padrão"
+                    scrollView.post {
+                        val location = IntArray(2)
+                        layoutFormEndereco.getLocationOnScreen(location)
+                        val scrollLocation = IntArray(2)
+                        scrollView.getLocationOnScreen(scrollLocation)
+                        val scrollTo = scrollView.scrollY + (location[1] - scrollLocation[1]) - 50
+                        scrollView.smoothScrollTo(0, scrollTo)
+                    }
                 }
+
                 else -> {
                     layoutFormEndereco.visibility = View.GONE
                     layoutFreteCadastro.visibility = View.GONE
@@ -163,9 +167,7 @@ class EnderecoActivity : AppCompatActivity() {
         optCadastro.setOnClickListener   { if (temEndereco) selecionarOpcao(OpcaoEndereco.CADASTRO) }
         optTemporario.setOnClickListener { selecionarOpcao(OpcaoEndereco.TEMPORARIO) }
         optAtualizar.setOnClickListener  { selecionarOpcao(OpcaoEndereco.ATUALIZAR) }
-        // ─────────────────────────────────────────────────────────
 
-        // ── ViaCEP ────────────────────────────────────────────────
         etCep.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -203,9 +205,7 @@ class EnderecoActivity : AppCompatActivity() {
                 }
             }
         })
-        // ─────────────────────────────────────────────────────────
 
-        // ── Calcular frete — opção 1 (cadastro) ──────────────────
         btnCalcularFreteCad.setOnClickListener {
             val cep = SessionManager.getCep(this)
             freteValor = calcularFrete(cep)
@@ -215,7 +215,6 @@ class EnderecoActivity : AppCompatActivity() {
             Toast.makeText(this, "Frete calculado!", Toast.LENGTH_SHORT).show()
         }
 
-        // ── Calcular frete — opções 2 e 3 ────────────────────────
         btnCalcularFrete.setOnClickListener {
             val cep = etCep.text.toString().trim()
             if (cep.length < 8) {
@@ -227,16 +226,15 @@ class EnderecoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Se for opção 3 (atualizar), salva no backend
             if (opcaoSelecionada == OpcaoEndereco.ATUALIZAR) {
                 salvarEnderecoNoBackend(
-                    cep          = cep,
-                    rua          = etRua.text.toString().trim(),
-                    numero       = etNumero.text.toString().trim(),
-                    bairro       = etBairro.text.toString().trim(),
-                    cidade       = etCidade.text.toString().trim(),
-                    estado       = etEstado.text.toString().trim(),
-                    complemento  = etComplemento.text.toString().trim()
+                    cep         = cep,
+                    rua         = etRua.text.toString().trim(),
+                    numero      = etNumero.text.toString().trim(),
+                    bairro      = etBairro.text.toString().trim(),
+                    cidade      = etCidade.text.toString().trim(),
+                    estado      = etEstado.text.toString().trim(),
+                    complemento = etComplemento.text.toString().trim()
                 )
             }
 
@@ -247,7 +245,6 @@ class EnderecoActivity : AppCompatActivity() {
             Toast.makeText(this, "Frete calculado!", Toast.LENGTH_SHORT).show()
         }
 
-        // ── Prosseguir ────────────────────────────────────────────
         btnProsseguir.setOnClickListener {
             if (opcaoSelecionada == OpcaoEndereco.NENHUMA) {
                 Toast.makeText(this, "Selecione uma opção de entrega", Toast.LENGTH_SHORT).show()
@@ -264,7 +261,6 @@ class EnderecoActivity : AppCompatActivity() {
         }
     }
 
-    // ── Salva endereço padrão no backend (opção 3) ────────────────
     private fun salvarEnderecoNoBackend(
         cep: String, rua: String, numero: String,
         bairro: String, cidade: String, estado: String, complemento: String
@@ -276,7 +272,6 @@ class EnderecoActivity : AppCompatActivity() {
             .enqueue(object : Callback<Map<String, String>> {
                 override fun onResponse(call: Call<Map<String, String>>, response: Response<Map<String, String>>) {
                     if (response.isSuccessful) {
-                        // Atualiza SessionManager localmente
                         SessionManager.salvar(
                             context  = this@EnderecoActivity,
                             token    = SessionManager.getToken(this@EnderecoActivity) ?: "",

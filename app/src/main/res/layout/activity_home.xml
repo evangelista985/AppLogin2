@@ -40,7 +40,7 @@
                     <ImageView
                         android:layout_width="210dp"
                         android:layout_height="45dp"
-                        android:src="@drawable/logo_corrido"
+                        android:src="@drawable/logo_escrito"
                         android:scaleType="fitStart"
                         android:adjustViewBounds="true" />
 
@@ -64,7 +64,6 @@
                             android:ellipsize="end" />
                     </LinearLayout>
 
-                    <!-- Botões ocultos para compatibilidade -->
                     <TextView android:id="@+id/tvCarrinhoQtd" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" />
                     <ImageButton android:id="@+id/btnCarrinho" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:src="@drawable/baseline_shopping_cart_24" android:backgroundTint="@android:color/transparent" />
                     <ImageButton android:id="@+id/btnPedidos" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:src="@drawable/ic_pedidos" android:backgroundTint="@android:color/transparent" />
@@ -105,7 +104,6 @@
                         android:imeOptions="actionSearch"
                         android:singleLine="true" />
 
-                    <!-- Botão X para limpar busca -->
                     <ImageView
                         android:id="@+id/ivLimparBusca"
                         android:layout_width="32dp"
@@ -215,6 +213,7 @@
                         android:fontFamily="sans-serif"
                         android:letterSpacing="0.05" />
 
+                    <!-- ALTERADO: Ervas → Orgânicos -->
                     <TextView
                         android:id="@+id/chipErvas"
                         android:layout_width="wrap_content"
@@ -224,7 +223,7 @@
                         android:gravity="center"
                         android:paddingStart="14dp"
                         android:paddingEnd="14dp"
-                        android:text="Ervas"
+                        android:text="Orgânicos"
                         android:textColor="@color/verde_menta"
                         android:textSize="10sp"
                         android:fontFamily="sans-serif"
@@ -295,7 +294,6 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless">
-
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_home" app:tint="@color/verde_escuro" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Início" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/verde_escuro" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
@@ -308,7 +306,6 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless">
-
             <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
                 <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/baseline_shopping_cart_24" app:tint="@color/texto_secundario" />
                 <TextView android:id="@+id/tvNavCarrinhoQtd" android:layout_width="15dp" android:layout_height="15dp" android:layout_gravity="top|end" android:background="@color/verde_medio" android:gravity="center" android:text="0" android:textColor="@color/white" android:textSize="8sp" android:visibility="gone" />
@@ -324,7 +321,6 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless">
-
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_pedidos" app:tint="@color/texto_secundario" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pedidos" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
@@ -337,7 +333,6 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless">
-
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_account_settings" app:tint="@color/texto_secundario" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Admin" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/texto_secundario" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>
@@ -350,7 +345,6 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless">
-
             <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_logout" app:tint="@color/vermelho_sair" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sair" android:textSize="9sp" android:fontFamily="sans-serif" android:textColor="@color/vermelho_sair" android:letterSpacing="0.05" android:layout_marginTop="3dp" />
         </LinearLayout>

@@ -161,7 +161,7 @@
                             android:textColor="@color/texto_principal"
                             android:textSize="15sp"
                             android:buttonTint="@color/verde_escuro"
-                            android:background="@color/verde_fundo_badge"
+                            android:background="@color/borda_card"
                             android:padding="14dp" />
 
                         <RadioButton
