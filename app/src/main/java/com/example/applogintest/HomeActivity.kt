@@ -26,7 +26,7 @@ import com.example.applogintest.util.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import androidx.appcompat.app.AppCompatDelegate
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var adapter: ProdutoAdapter
@@ -41,6 +41,13 @@ class HomeActivity : AppCompatActivity() {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Aplica modo escuro salvo
+        val prefs = getSharedPreferences("pura_prefs", MODE_PRIVATE)
+        if (prefs.getBoolean("modo_escuro", false)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 

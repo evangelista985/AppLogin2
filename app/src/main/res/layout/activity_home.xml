@@ -56,9 +56,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Olá! "
-                            android:textColor="@color/white"
-                            android:textSize="13sp"
-                            android:fontFamily="sans-serif"
+                            android:textColor="#DBC23F"
+                            android:textSize="14sp"
+                            android:fontFamily="serif"
+                            android:textStyle="italic"
                             android:maxLines="1"
                             android:ellipsize="end" />
                     </LinearLayout>

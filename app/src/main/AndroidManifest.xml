@@ -23,9 +23,11 @@
         <activity android:name=".ProdutoDetalheActivity" android:label="Detalhes" android:exported="false" />
         <activity android:name=".CarrinhoActivity" android:label="Carrinho" android:exported="false" />
         <activity android:name=".EnderecoActivity" android:label="Endereço de Entrega" android:windowSoftInputMode="adjustResize" android:exported="false" />
-        <activity android:name=".PagamentoActivity" android:label="Pagamento" android:exported="false" />
+        <activity android:name=".PagamentoActivity" android:label="Pagamento" android:windowSoftInputMode="adjustResize" android:exported="false" />
         <activity android:name=".AdminActivity" android:label="Configurações" android:exported="false" />
         <activity android:name=".RastreioPedidosActivity" android:label="Rastreio de Pedidos" android:exported="false" />
         <activity android:name=".RecuperarSenhaActivity" android:exported="false" />
+        <activity android:name=".PixActivity" android:label="Pix" android:windowSoftInputMode="adjustPan" android:exported="false" />
+        <activity android:name=".BoletoActivity" android:label="Boleto" android:exported="false" />
     </application>
 </manifest>

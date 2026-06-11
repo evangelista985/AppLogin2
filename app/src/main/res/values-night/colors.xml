@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="creme_fundo">#1E2420</color>
+    <color name="white">#2A3330</color>
+    <color name="texto_principal">#FFFFFF</color>
+    <color name="texto_secundario">#BBBBBB</color>
+    <color name="borda_card">#3A4A3A</color>
+    <color name="verde_fundo_badge">#1E3320</color>
+    <color name="verde_escuro">#2D6A2D</color>
+    <color name="verde_medio">#6DBF6D</color>
+    <color name="verde_claro">#A8C89A</color>
+    <color name="verde_menta">#C8E0C0</color>
+    <color name="texto_badge">#BBBBBB</color>
+    <color name="vermelho_sair">#FF8A8A</color>
+</resources>

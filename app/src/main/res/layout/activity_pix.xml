@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/creme_fundo">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verde_escuro"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
+
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_seta_voltar"
+            android:contentDescription="Voltar" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Pague com PIX"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:fontFamily="serif"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Timer -->
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/fundo_busca"
+                android:text="⏱ Expira em: 30:00"
+                android:textColor="@color/verde_escuro"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- QR Code simulado -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="QR CODE"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- QR Code simulado com texto -->
+                    <LinearLayout
+                        android:id="@+id/layoutQr"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="▓▓▓▓▓▓▓  ▓▓▓▓▓▓▓\n▓     ▓  ▓     ▓\n▓ ▓▓▓ ▓  ▓ ▓▓▓ ▓\n▓ ▓▓▓ ▓  ▓ ▓▓▓ ▓\n▓     ▓  ▓     ▓\n▓▓▓▓▓▓▓  ▓▓▓▓▓▓▓\n\n  ▓▓ ▓▓▓▓▓ ▓▓  \n ▓▓▓  ▓  ▓▓▓▓ \n  ▓▓▓▓▓▓▓  ▓  \n\n▓▓▓▓▓▓▓  ▓▓ ▓▓\n▓     ▓ ▓▓▓▓▓▓\n▓ ▓▓▓ ▓  ▓▓  ▓\n▓ ▓▓▓ ▓ ▓  ▓▓▓\n▓     ▓  ▓▓▓  \n▓▓▓▓▓▓▓ ▓▓  ▓▓"
+                            android:textColor="#000000"
+                            android:textSize="9sp"
+                            android:fontFamily="monospace"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="QR Code simulado — em produção gerado pelo banco"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="10sp"
+                        android:gravity="center" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Valor -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Valor a pagar"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvValorPix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R$ 0,00"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="serif" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Chave PIX -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chave PIX"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="11sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvChavePix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="puraessenciaetec@gmail.com"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp" />
+
+                    <Button
+                        android:id="@+id/btnCopiarChave"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:text="📋 Copiar chave PIX"
+                        android:textSize="13sp"
+                        android:backgroundTint="@color/verde_fundo_badge"
+                        android:textColor="@color/verde_escuro"
+                        android:singleLine="true"
+                        app:cornerRadius="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvTxid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <!-- Instruções -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Como pagar:"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="1. Abra o app do seu banco"
+                        android:textColor="@color/texto_secundario" android:textSize="12sp" android:layout_marginBottom="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="2. Escaneie o QR Code ou cole a chave PIX"
+                        android:textColor="@color/texto_secundario" android:textSize="12sp" android:layout_marginBottom="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="3. Confirme o pagamento no valor exato"
+                        android:textColor="@color/texto_secundario" android:textSize="12sp" android:layout_marginBottom="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="4. Clique em Confirmar Pagamento abaixo"
+                        android:textColor="@color/texto_secundario" android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Botão Confirmar -->
+    <Button
+        android:id="@+id/btnConfirmarPix"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/verde_escuro"
+        android:text="✅ CONFIRMAR PAGAMENTO"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:letterSpacing="0.08"
+        android:textStyle="bold"
+        android:singleLine="true"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>

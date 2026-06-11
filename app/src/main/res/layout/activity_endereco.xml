@@ -5,15 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="#F0F0E8">
+    android:background="@color/creme_fundo">
 
-
-    <!-- ═══ HEADER ═══ -->
     <!-- ═══ HEADER ═══ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1A4A1A"
+        android:background="@color/verde_escuro"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="12dp"
@@ -35,7 +33,7 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:text="Endereço de entrega"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="17sp"
             android:fontFamily="serif"
             android:textStyle="italic" />
@@ -59,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                app:cardBackgroundColor="#F5F5E0"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="2dp">
 
@@ -67,13 +65,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Para onde vamos entregar?"
-                        android:textColor="#1A3A1A"
+                        android:text="Onde vamos entregar?"
+                        android:textColor="@color/texto_principal"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -82,8 +83,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="14dp"
-                        android:text="Escolha uma das opções abaixo"
-                        android:textColor="#777777"
+                        android:text="Escolha uma das opções abaixo:"
+                        android:textColor="@color/texto_secundario"
                         android:textSize="12sp" />
 
                     <!-- Opção 1: Endereço do cadastro -->
@@ -114,7 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Entregar no meu endereço"
-                                android:textColor="#1A3A1A"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -124,7 +125,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
                                 android:text="📍 Carregando..."
-                                android:textColor="#2D6A2D"
+                                android:textColor="@color/verde_medio"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
@@ -138,7 +139,7 @@
                                 android:paddingTop="2dp"
                                 android:paddingBottom="2dp"
                                 android:text="Meu endereço padrão"
-                                android:textColor="#1A5A1A"
+                                android:textColor="@color/verde_escuro"
                                 android:textSize="11sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -171,7 +172,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Entregar em outro endereço"
-                                android:textColor="#1A3A1A"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -180,7 +181,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
                                 android:text="Apenas para este pedido — seu cadastro não será alterado"
-                                android:textColor="#666666"
+                                android:textColor="@color/texto_secundario"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -193,7 +194,7 @@
                                 android:paddingTop="2dp"
                                 android:paddingBottom="2dp"
                                 android:text="Endereço temporário"
-                                android:textColor="#1A3A6A"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="11sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -226,7 +227,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Atualizar meu endereço padrão"
-                                android:textColor="#1A3A1A"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -235,7 +236,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
                                 android:text="Informe um novo endereço e salve no seu cadastro"
-                                android:textColor="#666666"
+                                android:textColor="@color/texto_secundario"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -246,7 +247,7 @@
                         android:layout_height="0.5dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="14dp"
-                        android:background="#CCCCCC" />
+                        android:background="@color/borda_card" />
 
                     <!-- Formulário (opção 2 e 3) -->
                     <LinearLayout
@@ -262,7 +263,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:text="Informe o endereço de entrega"
-                            android:textColor="#888888"
+                            android:textColor="@color/texto_secundario"
                             android:textSize="11sp"
                             android:letterSpacing="0.04" />
 
@@ -305,7 +306,8 @@
                             android:maxLength="8"
                             android:padding="11dp"
                             android:textSize="13sp"
-                            android:textColorHint="#84B067" />
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/verde_medio" />
 
                         <EditText
                             android:id="@+id/etRua"
@@ -317,7 +319,8 @@
                             android:inputType="text"
                             android:padding="11dp"
                             android:textSize="13sp"
-                            android:textColorHint="#84B067" />
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/verde_medio" />
 
                         <EditText
                             android:id="@+id/etNumero"
@@ -329,7 +332,8 @@
                             android:inputType="text"
                             android:padding="11dp"
                             android:textSize="13sp"
-                            android:textColorHint="#84B067" />
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/verde_medio" />
 
                         <EditText
                             android:id="@+id/etBairro"
@@ -341,7 +345,8 @@
                             android:inputType="text"
                             android:padding="11dp"
                             android:textSize="13sp"
-                            android:textColorHint="#84B067" />
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/verde_medio" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -360,7 +365,8 @@
                                 android:inputType="text"
                                 android:padding="11dp"
                                 android:textSize="13sp"
-                                android:textColorHint="#84B067" />
+                                android:textColor="@color/texto_principal"
+                                android:textColorHint="@color/verde_medio" />
 
                             <EditText
                                 android:id="@+id/etEstado"
@@ -374,7 +380,8 @@
                                 android:maxLength="2"
                                 android:padding="11dp"
                                 android:textSize="13sp"
-                                android:textColorHint="#84B067" />
+                                android:textColor="@color/texto_principal"
+                                android:textColorHint="@color/verde_medio" />
                         </LinearLayout>
 
                         <EditText
@@ -387,16 +394,17 @@
                             android:inputType="text"
                             android:padding="11dp"
                             android:textSize="13sp"
-                            android:textColorHint="#84B067" />
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/verde_medio" />
 
                         <Button
                             android:id="@+id/btnCalcularFrete"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:layout_marginTop="4dp"
-                            android:backgroundTint="#2D6A2D"
+                            android:backgroundTint="@color/verde_escuro"
                             android:text="Calcular frete"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/white"
                             android:textSize="14sp"
                             app:cornerRadius="10dp" />
 
@@ -405,7 +413,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:textColor="#1A3A1A"
+                            android:textColor="@color/texto_principal"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -423,9 +431,9 @@
                             android:id="@+id/btnCalcularFreteCadastro"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:backgroundTint="#2D6A2D"
+                            android:backgroundTint="@color/verde_escuro"
                             android:text="Calcular frete"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/white"
                             android:textSize="14sp"
                             app:cornerRadius="10dp" />
 
@@ -434,7 +442,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:textColor="#1A3A1A"
+                            android:textColor="@color/texto_principal"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -446,11 +454,6 @@
         </LinearLayout>
     </ScrollView>
 
-
-
-
-
-
     <!-- ═══ BOTÃO FIXO NO RODAPÉ ═══ -->
     <Button
         android:id="@+id/btnProsseguirPagamento"
@@ -460,9 +463,9 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#1A4A1A"
+        android:backgroundTint="@color/verde_escuro"
         android:text="PROSSEGUIR PAGAMENTO"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="13sp"
         android:letterSpacing="0.08"
         android:textStyle="bold"

@@ -19,50 +19,29 @@
             android:background="@color/verde_escuro"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
+            android:paddingStart="12dp"
             android:paddingEnd="16dp"
             android:paddingTop="14dp"
             android:paddingBottom="14dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/creme_fundo">
+            <ImageButton
+                android:id="@+id/btnVoltar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_seta_voltar"
+                android:contentDescription="Voltar" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="0dp"
-                    app:srcCompat="@drawable/logo"
-                    android:scaleType="fitCenter" />
-            </androidx.cardview.widget.CardView>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PURA ESSÊNCIA"
-                    android:textColor="@color/verde_claro"
-                    android:textSize="9sp"
-                    android:letterSpacing="0.2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Configurações"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:fontFamily="serif"
-                    android:textStyle="italic" />
-            </LinearLayout>
+                android:layout_marginStart="8dp"
+                android:text="Configurações"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="serif"
+                android:textStyle="italic" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,54 +74,30 @@
                         android:textSize="10sp"
                         android:letterSpacing="0.15" />
 
-                    <LinearLayout
+
+
+                    <TextView
+                        android:id="@+id/tvAdminEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:text="—"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp" />
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="44dp"
-                            android:layout_height="44dp"
-                            android:layout_marginEnd="12dp"
-                            app:cardCornerRadius="22dp"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="@color/verde_fundo_badge">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="🌿"
-                                android:gravity="center"
-                                android:textSize="18sp" />
-                        </androidx.cardview.widget.CardView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvAdminEmail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Usuário: —"
-                                android:textColor="@color/texto_principal"
-                                android:textSize="14sp"
-                                android:fontFamily="serif" />
-
-                            <TextView
-                                android:id="@+id/tvAmbiente"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="Ambiente: —"
-                                android:textColor="@color/texto_badge"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvAmbiente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ambiente: —"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="11sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+
 
             <!-- ── Card: Sobre o App ── -->
             <androidx.cardview.widget.CardView

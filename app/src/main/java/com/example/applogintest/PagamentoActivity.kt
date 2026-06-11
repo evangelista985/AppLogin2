@@ -46,16 +46,16 @@ class PagamentoActivity : AppCompatActivity() {
         val etCvv           = findViewById<EditText>(R.id.etCvv)
         val spinnerParcelas = findViewById<Spinner>(R.id.spinnerParcelas)
 
-        val frameCartao     = findViewById<View>(R.id.frameCartao)
-        val cardFrente      = findViewById<View>(R.id.cardFrente)
-        val cardVerso       = findViewById<View>(R.id.cardVerso)
-        val tvNumeroCartao  = findViewById<TextView>(R.id.tvNumeroCartao)
-        val tvNomeTitular   = findViewById<TextView>(R.id.tvNomeTitular)
-        val tvValidadeCartao= findViewById<TextView>(R.id.tvValidadeCartao)
-        val tvCvvCartao     = findViewById<TextView>(R.id.tvCvvCartao)
-        val tvBandeira      = findViewById<TextView>(R.id.tvBandeira)
-        val layoutBadge     = findViewById<View>(R.id.layoutBadgeBandeira)
-        val tvBandeiraDetect= findViewById<TextView>(R.id.tvBandeiraDetectada)
+        val frameCartao      = findViewById<View>(R.id.frameCartao)
+        val cardFrente       = findViewById<View>(R.id.cardFrente)
+        val cardVerso        = findViewById<View>(R.id.cardVerso)
+        val tvNumeroCartao   = findViewById<TextView>(R.id.tvNumeroCartao)
+        val tvNomeTitular    = findViewById<TextView>(R.id.tvNomeTitular)
+        val tvValidadeCartao = findViewById<TextView>(R.id.tvValidadeCartao)
+        val tvCvvCartao      = findViewById<TextView>(R.id.tvCvvCartao)
+        val tvBandeira       = findViewById<TextView>(R.id.tvBandeira)
+        val layoutBadge      = findViewById<View>(R.id.layoutBadgeBandeira)
+        val tvBandeiraDetect = findViewById<TextView>(R.id.tvBandeiraDetectada)
 
         // Parcelas
         val parcelasOpcoes = listOf("1x sem juros", "2x sem juros", "3x sem juros")
@@ -69,7 +69,7 @@ class PagamentoActivity : AppCompatActivity() {
         // Flip manual ao tocar no cartão
         frameCartao.setOnClickListener { flipCartao(cardFrente, cardVerso) }
 
-        // ── Número: formata grupos de 4 e detecta bandeira ──
+        // ── Número ──
         etNumero.addTextChangedListener(object : TextWatcher {
             private var isFormatting = false
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -87,11 +87,7 @@ class PagamentoActivity : AppCompatActivity() {
                 etNumero.setText(result)
                 etNumero.setSelection(result.length)
                 isFormatting = false
-
-                // Exibe no cartão — linha única
                 tvNumeroCartao.text = result.ifEmpty { "**** **** **** ****" }
-
-                // Bandeira
                 val bandeira = detectarBandeira(digits)
                 atualizarBandeira(bandeira, tvBandeira, layoutBadge, tvBandeiraDetect, cardFrente, cardVerso)
             }
@@ -106,7 +102,7 @@ class PagamentoActivity : AppCompatActivity() {
             }
         })
 
-        // ── Validade: MM/AA ──
+        // ── Validade ──
         etValidade.addTextChangedListener(object : TextWatcher {
             private var isFormatting = false
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -127,11 +123,9 @@ class PagamentoActivity : AppCompatActivity() {
             }
         })
 
-        // ── CVV: vira para verso ao focar ──
+        // ── CVV ──
         etCvv.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus && !cartaoVirado) {
-                flipCartao(cardFrente, cardVerso)
-            }
+            if (hasFocus && !cartaoVirado) flipCartao(cardFrente, cardVerso)
         }
 
         etCvv.addTextChangedListener(object : TextWatcher {
@@ -139,7 +133,6 @@ class PagamentoActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 tvCvvCartao.text = if (s.isNullOrEmpty()) "•••" else "•".repeat(s.length.coerceAtMost(4))
-                // Após digitar 3+ dígitos, aguarda 600ms e vira de volta para frente
                 if ((s?.length ?: 0) >= 3 && cartaoVirado) {
                     android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                         if (cartaoVirado) flipCartao(cardFrente, cardVerso)
@@ -156,64 +149,65 @@ class PagamentoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val formaPagamento = when (pagamentoId) {
-                R.id.rbPix    -> "pix"
-                R.id.rbCartao -> "cartao"
-                R.id.rbBoleto -> "boleto"
-                else          -> "pix"
-            }
+            when (pagamentoId) {
+                R.id.rbPix -> {
+                    val intent = Intent(this, PixActivity::class.java)
+                    intent.putExtra("total", total)
+                    intent.putExtra("frete", frete)
+                    startActivity(intent)
+                }
+                R.id.rbBoleto -> {
+                    val intent = Intent(this, BoletoActivity::class.java)
+                    intent.putExtra("total", total)
+                    intent.putExtra("frete", frete)
+                    startActivity(intent)
+                }
+                R.id.rbCartao -> {
+                    val numero   = etNumero.text.toString().replace(" ", "")
+                    val validade = etValidade.text.toString()
+                    val cvv      = etCvv.text.toString()
+                    if (numero.length < 13) { Toast.makeText(this, "Número do cartão inválido", Toast.LENGTH_SHORT).show(); return@setOnClickListener }
+                    if (validade.length < 5) { Toast.makeText(this, "Validade inválida", Toast.LENGTH_SHORT).show(); return@setOnClickListener }
+                    if (cvv.length < 3)      { Toast.makeText(this, "CVV inválido", Toast.LENGTH_SHORT).show(); return@setOnClickListener }
 
-            if (pagamentoId == R.id.rbCartao) {
-                val numero   = etNumero.text.toString().replace(" ", "")
-                val validade = etValidade.text.toString()
-                val cvv      = etCvv.text.toString()
-                if (numero.length < 13) { Toast.makeText(this, "Número do cartão inválido", Toast.LENGTH_SHORT).show(); return@setOnClickListener }
-                if (validade.length < 5) { Toast.makeText(this, "Validade inválida", Toast.LENGTH_SHORT).show(); return@setOnClickListener }
-                if (cvv.length < 3)      { Toast.makeText(this, "CVV inválido", Toast.LENGTH_SHORT).show(); return@setOnClickListener }
-            }
-
-            val bearerToken  = SessionManager.getBearerToken(this)
-            val emailUsuario = SessionManager.getEmail(this)
-
-            val itens = CarrinhoManager.getItens().map { item ->
-                ItemPedidoRequest(produto_id = item.produto.id, quantidade = item.quantidade)
-            }
-
-            val pedidoRequest = PedidoRequest(
-                itens           = itens,
-                forma_pagamento = formaPagamento,
-                frete           = FreteRequest(valor = frete, nome = "PAC"),
-                cupom_codigo    = null
-            )
-
-            progressBar.visibility = View.VISIBLE
-            btnFinalizar.isEnabled = false
-
-            ApiClient.instance.criarPedido(bearerToken, pedidoRequest)
-                .enqueue(object : Callback<PedidoResponse> {
-                    override fun onResponse(call: Call<PedidoResponse>, response: Response<PedidoResponse>) {
-                        progressBar.visibility = View.GONE
-                        btnFinalizar.isEnabled = true
-                        if (response.isSuccessful) {
-                            val pedido = response.body()!!
-                            Toast.makeText(
-                                this@PagamentoActivity,
-                                "Pedido #${pedido.pedido_id} finalizado! 🌿\nConfirmação enviada para $emailUsuario",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            CarrinhoManager.limpar()
-                            finishAffinity()
-                            startActivity(Intent(this@PagamentoActivity, HomeActivity::class.java))
-                        } else {
-                            Toast.makeText(this@PagamentoActivity, "Erro ao salvar pedido", Toast.LENGTH_SHORT).show()
-                        }
+                    val bearerToken  = SessionManager.getBearerToken(this)
+                    val emailUsuario = SessionManager.getEmail(this)
+                    val itens = CarrinhoManager.getItens().map { item ->
+                        ItemPedidoRequest(produto_id = item.produto.id, quantidade = item.quantidade)
                     }
-                    override fun onFailure(call: Call<PedidoResponse>, t: Throwable) {
-                        progressBar.visibility = View.GONE
-                        btnFinalizar.isEnabled = true
-                        Toast.makeText(this@PagamentoActivity, "Falha na rede: ${t.message}", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                    val pedidoRequest = PedidoRequest(
+                        itens           = itens,
+                        forma_pagamento = "cartao",
+                        frete           = FreteRequest(valor = frete, nome = "PAC"),
+                        cupom_codigo    = null
+                    )
+                    progressBar.visibility = View.VISIBLE
+                    btnFinalizar.isEnabled = false
+                    ApiClient.instance.criarPedido(bearerToken, pedidoRequest)
+                        .enqueue(object : Callback<PedidoResponse> {
+                            override fun onResponse(call: Call<PedidoResponse>, response: Response<PedidoResponse>) {
+                                progressBar.visibility = View.GONE
+                                btnFinalizar.isEnabled = true
+                                if (response.isSuccessful) {
+                                    val pedido = response.body()!!
+                                    Toast.makeText(this@PagamentoActivity,
+                                        "Pedido #${pedido.pedido_id} finalizado! 🌿\nConfirmação enviada para $emailUsuario",
+                                        Toast.LENGTH_LONG).show()
+                                    CarrinhoManager.limpar()
+                                    finishAffinity()
+                                    startActivity(Intent(this@PagamentoActivity, HomeActivity::class.java))
+                                } else {
+                                    Toast.makeText(this@PagamentoActivity, "Erro ao salvar pedido", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            override fun onFailure(call: Call<PedidoResponse>, t: Throwable) {
+                                progressBar.visibility = View.GONE
+                                btnFinalizar.isEnabled = true
+                                Toast.makeText(this@PagamentoActivity, "Falha na rede: ${t.message}", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                }
+            }
         }
     }
 
@@ -226,7 +220,7 @@ class PagamentoActivity : AppCompatActivity() {
             override fun onAnimationStart(a: android.view.animation.Animation?) {}
             override fun onAnimationRepeat(a: android.view.animation.Animation?) {}
             override fun onAnimationEnd(a: android.view.animation.Animation?) {
-                saindo.visibility  = View.GONE
+                saindo.visibility   = View.GONE
                 entrando.visibility = View.VISIBLE
                 entrando.startAnimation(animEntrada)
             }
@@ -256,19 +250,15 @@ class PagamentoActivity : AppCompatActivity() {
         cardFrente: View,
         cardVerso: View
     ) {
-        // Símbolo e nome da bandeira no card visual
         val (simbolo, nome, cor) = when (bandeira) {
-            "VISA"       -> Triple("VISA",        "Visa detectado ✓",             "#1a1f71")
-            "MASTERCARD" -> Triple("MC",          "Mastercard detectado ✓",       "#eb001b")
-            "ELO"        -> Triple("elo",         "Elo detectado ✓",              "#212121")
-            "AMEX"       -> Triple("AMEX",        "American Express detectado ✓", "#007bc1")
-            "DINERS"     -> Triple("DINERS",      "Diners Club detectado ✓",      "#004A97")
-            else         -> Triple("",            "",                             "#888888")
+            "VISA"       -> Triple("VISA",   "Visa detectado ✓",             "#1a1f71")
+            "MASTERCARD" -> Triple("MC",     "Mastercard detectado ✓",       "#eb001b")
+            "ELO"        -> Triple("elo",    "Elo detectado ✓",              "#212121")
+            "AMEX"       -> Triple("AMEX",   "American Express detectado ✓", "#007bc1")
+            "DINERS"     -> Triple("DINERS", "Diners Club detectado ✓",      "#004A97")
+            else         -> Triple("",       "",                             "#888888")
         }
-
         tvBandeira.text = simbolo
-
-        // Gradiente do cartão conforme bandeira
         val bgRes = when (bandeira) {
             "VISA"       -> R.drawable.bg_cartao_visa
             "MASTERCARD" -> R.drawable.bg_cartao_mastercard
@@ -279,8 +269,6 @@ class PagamentoActivity : AppCompatActivity() {
         }
         cardFrente.setBackgroundResource(bgRes)
         cardVerso.setBackgroundResource(bgRes)
-
-        // Badge detectado
         if (bandeira != "DEFAULT" && bandeira.isNotEmpty()) {
             layoutBadge.visibility = View.VISIBLE
             (tvDetect as TextView).apply {

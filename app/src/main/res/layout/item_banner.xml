@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Título"
-            android:textColor="@color/white"
+            android:textColor="#DBC23F"
             android:textSize="17sp"
             android:fontFamily="serif"
             android:textStyle="bold"
