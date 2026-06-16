@@ -218,11 +218,60 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvStatusAberto"
+        <!-- Status aberto: pendente / cancelado -->
+        <LinearLayout
+            android:id="@+id/layoutStatusAberto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:background="@color/verde_fundo_badge"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tvStatusIcone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="⏳"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvStatusAberto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pagamento em processamento"
+                android:textColor="@color/verde_escuro"
+                android:textSize="12sp"
+                android:fontFamily="serif"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+
+
+        <!-- Botão Cancelar — aparece apenas para pedidos pendentes -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelarPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:text="CANCELAR PEDIDO  ✕"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:letterSpacing="0.05"
+            android:background="@drawable/btn_cancelar"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

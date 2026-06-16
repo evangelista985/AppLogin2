@@ -21,6 +21,8 @@ class RastreioPedidosActivity : AppCompatActivity() {
 
     private lateinit var adapter: PedidoAdapter
     private val handler = Handler(Looper.getMainLooper())
+    private lateinit var tvVazio: View
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,25 +30,29 @@ class RastreioPedidosActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener { finish() }
 
-        val recycler    = findViewById<RecyclerView>(R.id.recyclerPedidos)
-        val tvVazio     = findViewById<View>(R.id.tvVazio)
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        val recycler = findViewById<RecyclerView>(R.id.recyclerPedidos)
+        tvVazio      = findViewById(R.id.tvVazio)
+        progressBar  = findViewById(R.id.progressBar)
 
-        adapter = PedidoAdapter(emptyList())
+        // Passa callback onCancelado: recarrega a lista quando um pedido é cancelado
+        adapter = PedidoAdapter(emptyList()) {
+            carregarPedidos()
+        }
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
 
-        carregarPedidos(tvVazio, progressBar)
+        carregarPedidos()
 
+        // Atualização automática a cada 30 segundos
         handler.postDelayed(object : Runnable {
             override fun run() {
-                carregarPedidos(tvVazio, progressBar)
+                carregarPedidos()
                 handler.postDelayed(this, 30000)
             }
         }, 30000)
     }
 
-    private fun carregarPedidos(tvVazio: View, progressBar: ProgressBar) {
+    private fun carregarPedidos() {
         progressBar.visibility = View.VISIBLE
         val token = SessionManager.getBearerToken(this)
 
