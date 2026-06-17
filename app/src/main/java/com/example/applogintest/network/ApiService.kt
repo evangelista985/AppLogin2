@@ -8,6 +8,7 @@ import com.example.applogintest.model.Pedido
 import com.example.applogintest.model.PedidoRequest
 import com.example.applogintest.model.PedidoResponse
 import com.example.applogintest.model.Produto
+import com.example.applogintest.model.CupomResponse
 import retrofit2.Call
 import retrofit2.http.*
 import com.example.applogintest.BannerItem
@@ -73,4 +74,8 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body body: AtualizarEnderecoRequest
     ): Call<Map<String, String>>
+
+    // ── Cupom de desconto ────────────────────────────────────────────────────
+    @POST("/api/cupons/verificar")
+    fun verificarCupom(@Body body: Map<String, String>): Call<CupomResponse>
 }

@@ -105,6 +105,81 @@
                             android:textColor="@color/texto_principal" android:textSize="14sp" />
                     </LinearLayout>
 
+                    <!-- Linha de desconto — só aparece quando um cupom é aplicado -->
+                    <LinearLayout
+                        android:id="@+id/layoutDesconto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp"
+                        android:visibility="gone">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Desconto"
+                            android:textColor="@color/verde_medio" android:textSize="14sp" />
+                        <TextView android:id="@+id/tvDesconto" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="- R$ 0,00"
+                            android:textColor="@color/verde_medio" android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/borda_card" android:layout_marginBottom="12dp" />
+
+                    <!-- ═══ CUPOM DE DESCONTO ═══ -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CUPOM DE DESCONTO"
+                        android:textColor="@color/texto_badge"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.15"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+
+                        <EditText
+                            android:id="@+id/etCupom"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/fundo_input_branco"
+                            android:hint="Digite o cupom"
+                            android:inputType="textCapCharacters"
+                            android:maxLines="1"
+                            android:padding="12dp"
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/texto_secundario"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnAplicarCupom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:backgroundTint="@color/verde_escuro"
+                            android:text="Aplicar"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            app:cornerRadius="10dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvMsgCupom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        android:layout_marginBottom="12dp" />
+
                     <View android:layout_width="match_parent" android:layout_height="1dp"
                         android:background="@color/borda_card" android:layout_marginBottom="12dp" />
 

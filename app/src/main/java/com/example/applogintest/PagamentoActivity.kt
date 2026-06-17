@@ -21,6 +21,12 @@ class PagamentoActivity : AppCompatActivity() {
 
     private var cartaoVirado = false
 
+    // ── Estado do cupom ──────────────────────────────────────────────────────
+    private var subtotalOriginal = 0.0
+    private var freteOriginal    = 0.0
+    private var descontoPercent  = 0.0
+    private var cupomAplicado: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagamento)
@@ -29,11 +35,78 @@ class PagamentoActivity : AppCompatActivity() {
 
         val frete    = intent.getDoubleExtra("frete", 0.0)
         val subtotal = CarrinhoManager.total()
-        val total    = subtotal + frete
+        subtotalOriginal = subtotal
+        freteOriginal    = frete
 
-        findViewById<TextView>(R.id.tvSubtotal).text = "R$ %.2f".format(subtotal)
-        findViewById<TextView>(R.id.tvFrete).text    = "R$ %.2f".format(frete)
-        findViewById<TextView>(R.id.tvTotal).text    = "R$ %.2f".format(total)
+        val tvSubtotal     = findViewById<TextView>(R.id.tvSubtotal)
+        val tvFrete        = findViewById<TextView>(R.id.tvFrete)
+        val tvTotal        = findViewById<TextView>(R.id.tvTotal)
+        val layoutDesconto = findViewById<LinearLayout>(R.id.layoutDesconto)
+        val tvDesconto     = findViewById<TextView>(R.id.tvDesconto)
+        val etCupom        = findViewById<EditText>(R.id.etCupom)
+        val btnAplicarCupom = findViewById<Button>(R.id.btnAplicarCupom)
+        val tvMsgCupom     = findViewById<TextView>(R.id.tvMsgCupom)
+
+        tvSubtotal.text = "R$ %.2f".format(subtotal)
+        tvFrete.text    = "R$ %.2f".format(frete)
+        tvTotal.text    = "R$ %.2f".format(subtotal + frete)
+
+        fun atualizarTotais() {
+            val valorDesconto = subtotalOriginal * (descontoPercent / 100.0)
+            val totalFinal    = subtotalOriginal - valorDesconto + freteOriginal
+
+            tvSubtotal.text = "R$ %.2f".format(subtotalOriginal)
+            tvFrete.text    = "R$ %.2f".format(freteOriginal)
+            tvTotal.text    = "R$ %.2f".format(totalFinal)
+
+            if (descontoPercent > 0) {
+                layoutDesconto.visibility = View.VISIBLE
+                tvDesconto.text = "- R$ %.2f".format(valorDesconto)
+            } else {
+                layoutDesconto.visibility = View.GONE
+            }
+        }
+
+        // ── Aplicar cupom ────────────────────────────────────────────────────
+        btnAplicarCupom.setOnClickListener {
+            val codigo = etCupom.text.toString().trim().uppercase()
+            if (codigo.isEmpty()) {
+                Toast.makeText(this, "Digite um código de cupom", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            btnAplicarCupom.isEnabled = false
+            ApiClient.instance.verificarCupom(mapOf("codigo" to codigo))
+                .enqueue(object : Callback<CupomResponse> {
+                    override fun onResponse(call: Call<CupomResponse>, response: Response<CupomResponse>) {
+                        btnAplicarCupom.isEnabled = true
+                        if (response.isSuccessful && response.body() != null) {
+                            val cupom = response.body()!!
+                            descontoPercent = cupom.desconto
+                            cupomAplicado   = cupom.codigo
+                            atualizarTotais()
+
+                            tvMsgCupom.visibility = View.VISIBLE
+                            tvMsgCupom.text = "Cupom aplicado! ${cupom.desconto.toInt()}% de desconto."
+                            tvMsgCupom.setTextColor(android.graphics.Color.parseColor("#3A5D3E"))
+                        } else {
+                            descontoPercent = 0.0
+                            cupomAplicado   = null
+                            atualizarTotais()
+
+                            tvMsgCupom.visibility = View.VISIBLE
+                            tvMsgCupom.text = "Cupom inválido ou expirado."
+                            tvMsgCupom.setTextColor(android.graphics.Color.parseColor("#dc3545"))
+                        }
+                    }
+                    override fun onFailure(call: Call<CupomResponse>, t: Throwable) {
+                        btnAplicarCupom.isEnabled = true
+                        tvMsgCupom.visibility = View.VISIBLE
+                        tvMsgCupom.text = "Falha na rede: ${t.message}"
+                        tvMsgCupom.setTextColor(android.graphics.Color.parseColor("#dc3545"))
+                    }
+                })
+        }
 
         val rgPagamento     = findViewById<RadioGroup>(R.id.rgPagamento)
         val cardFormCartao  = findViewById<CardView>(R.id.cardFormCartao)
@@ -149,17 +222,19 @@ class PagamentoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val totalAtual = subtotalOriginal - (subtotalOriginal * (descontoPercent / 100.0)) + freteOriginal
+
             when (pagamentoId) {
                 R.id.rbPix -> {
                     val intent = Intent(this, PixActivity::class.java)
-                    intent.putExtra("total", total)
-                    intent.putExtra("frete", frete)
+                    intent.putExtra("total", totalAtual)
+                    intent.putExtra("frete", freteOriginal)
                     startActivity(intent)
                 }
                 R.id.rbBoleto -> {
                     val intent = Intent(this, BoletoActivity::class.java)
-                    intent.putExtra("total", total)
-                    intent.putExtra("frete", frete)
+                    intent.putExtra("total", totalAtual)
+                    intent.putExtra("frete", freteOriginal)
                     startActivity(intent)
                 }
                 R.id.rbCartao -> {
@@ -178,8 +253,8 @@ class PagamentoActivity : AppCompatActivity() {
                     val pedidoRequest = PedidoRequest(
                         itens           = itens,
                         forma_pagamento = "cartao",
-                        frete           = FreteRequest(valor = frete, nome = "PAC"),
-                        cupom_codigo    = null
+                        frete           = FreteRequest(valor = freteOriginal, nome = "PAC"),
+                        cupom_codigo    = cupomAplicado
                     )
                     progressBar.visibility = View.VISIBLE
                     btnFinalizar.isEnabled = false
