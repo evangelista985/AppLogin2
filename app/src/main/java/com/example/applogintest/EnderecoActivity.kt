@@ -257,6 +257,31 @@ class EnderecoActivity : AppCompatActivity() {
             val intent = Intent(this, PagamentoActivity::class.java)
             intent.putExtra("frete", freteValor)
             intent.putExtra("endereco", enderecoFinal)
+
+            // Campos individuais do endereço, usados para montar o endereco_entrega do pedido.
+            // CADASTRO -> vem do SessionManager (endereço padrão já salvo).
+            // TEMPORARIO / ATUALIZAR -> vem do formulário preenchido nesta tela.
+            when (opcaoSelecionada) {
+                OpcaoEndereco.CADASTRO -> {
+                    intent.putExtra("end_cep", SessionManager.getCep(this))
+                    intent.putExtra("end_logradouro", SessionManager.getEndereco(this))
+                    intent.putExtra("end_numero", SessionManager.getNumero(this))
+                    intent.putExtra("end_bairro", SessionManager.getBairro(this))
+                    intent.putExtra("end_cidade", SessionManager.getCidade(this))
+                    intent.putExtra("end_estado", SessionManager.getEstado(this))
+                }
+                OpcaoEndereco.TEMPORARIO, OpcaoEndereco.ATUALIZAR -> {
+                    intent.putExtra("end_cep", etCep.text.toString().trim())
+                    intent.putExtra("end_logradouro", etRua.text.toString().trim())
+                    intent.putExtra("end_numero", etNumero.text.toString().trim())
+                    intent.putExtra("end_bairro", etBairro.text.toString().trim())
+                    intent.putExtra("end_cidade", etCidade.text.toString().trim())
+                    intent.putExtra("end_estado", etEstado.text.toString().trim())
+                    intent.putExtra("end_complemento", etComplemento.text.toString().trim())
+                }
+                else -> {}
+            }
+
             startActivity(intent)
         }
     }

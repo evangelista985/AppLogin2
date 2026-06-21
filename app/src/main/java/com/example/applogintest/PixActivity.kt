@@ -81,11 +81,25 @@ class PixActivity : AppCompatActivity() {
             ItemPedidoRequest(produto_id = item.produto.id, quantidade = item.quantidade)
         }
 
+        // Cupom e endereço vêm da tela de Pagamento (Intent); fallback no SessionManager
+        // garante que o pedido não saia sem endereço mesmo se algum extra não chegar.
+        val cupomCodigo = intent.getStringExtra("cupom_codigo")
+        val enderecoEntrega = EnderecoEntregaRequest(
+            cep         = intent.getStringExtra("end_cep").orEmptyToNullPix() ?: SessionManager.getCep(this),
+            endereco    = intent.getStringExtra("end_logradouro").orEmptyToNullPix() ?: SessionManager.getEndereco(this),
+            numero      = intent.getStringExtra("end_numero").orEmptyToNullPix() ?: SessionManager.getNumero(this),
+            complemento = intent.getStringExtra("end_complemento").orEmptyToNullPix(),
+            bairro      = intent.getStringExtra("end_bairro").orEmptyToNullPix() ?: SessionManager.getBairro(this),
+            cidade      = intent.getStringExtra("end_cidade").orEmptyToNullPix() ?: SessionManager.getCidade(this),
+            estado      = intent.getStringExtra("end_estado").orEmptyToNullPix() ?: SessionManager.getEstado(this)
+        )
+
         val pedidoRequest = PedidoRequest(
             itens           = itens,
             forma_pagamento = formaPagamento,
             frete           = FreteRequest(valor = frete, nome = "PAC"),
-            cupom_codigo    = null
+            cupom_codigo    = cupomCodigo,
+            endereco_entrega = enderecoEntrega
         )
 
         ApiClient.instance.criarPedido(bearerToken, pedidoRequest)
@@ -120,3 +134,6 @@ class PixActivity : AppCompatActivity() {
         countDownTimer?.cancel()
     }
 }
+
+// Converte string vazia em null, para não sobrescrever o fallback do SessionManager.
+private fun String?.orEmptyToNullPix(): String? = if (this.isNullOrBlank()) null else this

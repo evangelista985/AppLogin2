@@ -38,6 +38,18 @@ class PagamentoActivity : AppCompatActivity() {
         subtotalOriginal = subtotal
         freteOriginal    = frete
 
+        // Endereço: prioriza o que veio da tela de Endereço (Intent);
+        // se não vier nada (ex: navegação inesperada), usa o padrão salvo no SessionManager.
+        val enderecoEntrega = EnderecoEntregaRequest(
+            cep         = intent.getStringExtra("end_cep").orEmptyToNull() ?: SessionManager.getCep(this),
+            endereco    = intent.getStringExtra("end_logradouro").orEmptyToNull() ?: SessionManager.getEndereco(this),
+            numero      = intent.getStringExtra("end_numero").orEmptyToNull() ?: SessionManager.getNumero(this),
+            complemento = intent.getStringExtra("end_complemento").orEmptyToNull(),
+            bairro      = intent.getStringExtra("end_bairro").orEmptyToNull() ?: SessionManager.getBairro(this),
+            cidade      = intent.getStringExtra("end_cidade").orEmptyToNull() ?: SessionManager.getCidade(this),
+            estado      = intent.getStringExtra("end_estado").orEmptyToNull() ?: SessionManager.getEstado(this)
+        )
+
         val tvSubtotal     = findViewById<TextView>(R.id.tvSubtotal)
         val tvFrete        = findViewById<TextView>(R.id.tvFrete)
         val tvTotal        = findViewById<TextView>(R.id.tvTotal)
@@ -229,12 +241,28 @@ class PagamentoActivity : AppCompatActivity() {
                     val intent = Intent(this, PixActivity::class.java)
                     intent.putExtra("total", totalAtual)
                     intent.putExtra("frete", freteOriginal)
+                    intent.putExtra("cupom_codigo", cupomAplicado)
+                    intent.putExtra("end_cep", enderecoEntrega.cep)
+                    intent.putExtra("end_logradouro", enderecoEntrega.endereco)
+                    intent.putExtra("end_numero", enderecoEntrega.numero)
+                    intent.putExtra("end_complemento", enderecoEntrega.complemento)
+                    intent.putExtra("end_bairro", enderecoEntrega.bairro)
+                    intent.putExtra("end_cidade", enderecoEntrega.cidade)
+                    intent.putExtra("end_estado", enderecoEntrega.estado)
                     startActivity(intent)
                 }
                 R.id.rbBoleto -> {
                     val intent = Intent(this, BoletoActivity::class.java)
                     intent.putExtra("total", totalAtual)
                     intent.putExtra("frete", freteOriginal)
+                    intent.putExtra("cupom_codigo", cupomAplicado)
+                    intent.putExtra("end_cep", enderecoEntrega.cep)
+                    intent.putExtra("end_logradouro", enderecoEntrega.endereco)
+                    intent.putExtra("end_numero", enderecoEntrega.numero)
+                    intent.putExtra("end_complemento", enderecoEntrega.complemento)
+                    intent.putExtra("end_bairro", enderecoEntrega.bairro)
+                    intent.putExtra("end_cidade", enderecoEntrega.cidade)
+                    intent.putExtra("end_estado", enderecoEntrega.estado)
                     startActivity(intent)
                 }
                 R.id.rbCartao -> {
@@ -254,7 +282,8 @@ class PagamentoActivity : AppCompatActivity() {
                         itens           = itens,
                         forma_pagamento = "cartao",
                         frete           = FreteRequest(valor = freteOriginal, nome = "PAC"),
-                        cupom_codigo    = cupomAplicado
+                        cupom_codigo    = cupomAplicado,
+                        endereco_entrega = enderecoEntrega
                     )
                     progressBar.visibility = View.VISIBLE
                     btnFinalizar.isEnabled = false
@@ -355,3 +384,7 @@ class PagamentoActivity : AppCompatActivity() {
         }
     }
 }
+
+// Converte string vazia em null, para não sobrescrever o fallback do SessionManager
+// quando o Intent chega sem esse extra (getStringExtra retorna null) ou com string vazia.
+private fun String?.orEmptyToNull(): String? = if (this.isNullOrBlank()) null else this

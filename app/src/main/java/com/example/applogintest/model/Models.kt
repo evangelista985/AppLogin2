@@ -63,11 +63,23 @@ data class FreteRequest(
     val nome: String
 )
 
+// Estrutura esperada pelo backend em "endereco_entrega" (ver routes/pedidos.js)
+data class EnderecoEntregaRequest(
+    val cep: String? = null,
+    val endereco: String? = null,
+    val numero: String? = null,
+    val complemento: String? = null,
+    val bairro: String? = null,
+    val cidade: String? = null,
+    val estado: String? = null
+)
+
 data class PedidoRequest(
     val itens: List<ItemPedidoRequest>,
     val forma_pagamento: String,
     val frete: FreteRequest? = null,
-    val cupom_codigo: String? = null
+    val cupom_codigo: String? = null,
+    val endereco_entrega: EnderecoEntregaRequest? = null
 )
 
 data class PedidoResponse(
