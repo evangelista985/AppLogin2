@@ -29,7 +29,8 @@
                 android:layout_height="match_parent"
                 android:padding="0dp"
                 app:srcCompat="@drawable/logo_escuro"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:contentDescription="Logo Pura Essência" />
         </androidx.cardview.widget.CardView>
 
         <!-- Marca -->
@@ -100,13 +101,15 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvLabelEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="E-MAIL CADASTRADO"
                         android:textColor="@color/texto_badge"
                         android:textSize="10sp"
                         android:letterSpacing="0.15"
-                        android:layout_marginBottom="8dp" />
+                        android:layout_marginBottom="8dp"
+                        android:labelFor="@id/etEmail" />
 
                     <EditText
                         android:id="@+id/etEmail"
@@ -118,7 +121,8 @@
                         android:background="@drawable/fundo_input_branco"
                         android:textColor="@color/texto_principal"
                         android:textColorHint="@color/texto_secundario"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:contentDescription="Campo e-mail cadastrado" />
 
                     <Button
                         android:id="@+id/btnEnviarCodigo"
@@ -149,16 +153,19 @@
                         android:text="Código enviado para: email@email.com"
                         android:textColor="@color/verde_medio"
                         android:textSize="12sp"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="16dp"
+                        android:accessibilityLiveRegion="polite" />
 
                     <TextView
+                        android:id="@+id/tvLabelCodigo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="CÓDIGO DE 6 DÍGITOS"
                         android:textColor="@color/texto_badge"
                         android:textSize="10sp"
                         android:letterSpacing="0.1"
-                        android:layout_marginBottom="8dp" />
+                        android:layout_marginBottom="8dp"
+                        android:labelFor="@id/etCodigo" />
 
                     <EditText
                         android:id="@+id/etCodigo"
@@ -174,9 +181,11 @@
                         android:textSize="20sp"
                         android:gravity="center"
                         android:letterSpacing="0.3"
-                        android:fontFamily="monospace" />
+                        android:fontFamily="monospace"
+                        android:contentDescription="Campo código de verificação, 6 dígitos" />
 
                     <TextView
+                        android:id="@+id/tvLabelNovaSenha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NOVA SENHA"
@@ -184,7 +193,8 @@
                         android:textSize="10sp"
                         android:letterSpacing="0.1"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginTop="14dp" />
+                        android:layout_marginTop="14dp"
+                        android:labelFor="@id/etNovaSenha" />
 
                     <EditText
                         android:id="@+id/etNovaSenha"
@@ -196,9 +206,11 @@
                         android:background="@drawable/fundo_input_branco"
                         android:textColor="@color/texto_principal"
                         android:textColorHint="@color/texto_secundario"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:contentDescription="Campo nova senha" />
 
                     <TextView
+                        android:id="@+id/tvLabelConfirmarSenha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="CONFIRMAR NOVA SENHA"
@@ -206,7 +218,8 @@
                         android:textSize="10sp"
                         android:letterSpacing="0.1"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginTop="14dp" />
+                        android:layout_marginTop="14dp"
+                        android:labelFor="@id/etConfirmarSenha" />
 
                     <EditText
                         android:id="@+id/etConfirmarSenha"
@@ -218,7 +231,8 @@
                         android:background="@drawable/fundo_input_branco"
                         android:textColor="@color/texto_principal"
                         android:textColorHint="@color/texto_secundario"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:contentDescription="Campo confirmar nova senha" />
 
                     <Button
                         android:id="@+id/btnRedefinir"
@@ -252,7 +266,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:indeterminateTint="@color/verde_escuro"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:contentDescription="Processando, aguarde" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -283,6 +298,7 @@
             android:text="← Voltar para o login"
             android:textColor="@color/verde_claro"
             android:textSize="13sp"
+            android:contentDescription="Voltar para a tela de login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvRodape" />

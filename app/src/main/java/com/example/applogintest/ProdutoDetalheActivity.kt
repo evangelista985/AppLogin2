@@ -48,6 +48,9 @@ class ProdutoDetalheActivity : AppCompatActivity() {
         tvCategoria.text  = categoria.replaceFirstChar { it.uppercase() }
         tvQuantidade.text = quantidade.toString()
 
+        // TalkBack: descrição dinâmica da imagem com o nome do produto
+        imgProduto.contentDescription = "Foto de $nome"
+
         // Carrega imagem com Glide
         val urlImagem = when {
             imagem.isBlank()          -> null
@@ -73,12 +76,16 @@ class ProdutoDetalheActivity : AppCompatActivity() {
             if (quantidade > 1) {
                 quantidade--
                 tvQuantidade.text = quantidade.toString()
+                // TalkBack: anuncia a nova quantidade automaticamente (accessibilityLiveRegion)
+                tvQuantidade.contentDescription = "Quantidade: $quantidade"
             }
         }
 
         btnMais.setOnClickListener {
             quantidade++
             tvQuantidade.text = quantidade.toString()
+            // TalkBack: anuncia a nova quantidade automaticamente (accessibilityLiveRegion)
+            tvQuantidade.contentDescription = "Quantidade: $quantidade"
         }
 
         btnAdicionar.setOnClickListener {
@@ -90,6 +97,8 @@ class ProdutoDetalheActivity : AppCompatActivity() {
             } else {
                 repeat(quantidade) { CarrinhoManager.adicionar(produto) }
                 Toast.makeText(this, "$quantidade x $nome adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
+                // TalkBack: anuncia confirmação da ação ao usuário
+                btnAdicionar.announceForAccessibility("$quantidade x $nome adicionado ao carrinho")
                 finish()
             }
         }

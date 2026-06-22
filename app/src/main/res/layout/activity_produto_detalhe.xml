@@ -68,7 +68,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
                     android:src="@mipmap/ic_launcher"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Foto do produto" />
             </androidx.cardview.widget.CardView>
 
             <!-- Card de Informações -->
@@ -180,7 +181,8 @@
                             android:backgroundTint="@color/verde_fundo_badge"
                             android:textColor="@color/verde_escuro"
                             android:padding="0dp"
-                            app:cornerRadius="20dp" />
+                            app:cornerRadius="20dp"
+                            android:contentDescription="Diminuir quantidade" />
 
                         <TextView
                             android:id="@+id/tvQuantidade"
@@ -191,7 +193,9 @@
                             android:textStyle="bold"
                             android:textColor="@color/verde_escuro"
                             android:fontFamily="serif"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            android:accessibilityLiveRegion="polite"
+                            android:contentDescription="Quantidade: 1" />
 
                         <Button
                             android:id="@+id/btnMais"
@@ -202,7 +206,8 @@
                             android:backgroundTint="@color/verde_escuro"
                             android:textColor="@color/white"
                             android:padding="0dp"
-                            app:cornerRadius="20dp" />
+                            app:cornerRadius="20dp"
+                            android:contentDescription="Aumentar quantidade" />
                     </LinearLayout>
 
                     <!-- Botão Adicionar ao Carrinho -->

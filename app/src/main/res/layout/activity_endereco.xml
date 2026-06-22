@@ -96,14 +96,18 @@
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/bg_opcao_inativa"
                         android:orientation="horizontal"
-                        android:padding="12dp">
+                        android:padding="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="Opção: Entregar no meu endereço cadastrado">
 
                         <View
                             android:id="@+id/radioCadastro"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:layout_marginTop="2dp"
-                            android:background="@drawable/radio_inativo" />
+                            android:background="@drawable/radio_inativo"
+                            android:importantForAccessibility="no" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -153,14 +157,18 @@
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/bg_opcao_inativa"
                         android:orientation="horizontal"
-                        android:padding="12dp">
+                        android:padding="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="Opção: Entregar em outro endereço temporário">
 
                         <View
                             android:id="@+id/radioTemporario"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:layout_marginTop="2dp"
-                            android:background="@drawable/radio_inativo" />
+                            android:background="@drawable/radio_inativo"
+                            android:importantForAccessibility="no" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -208,14 +216,18 @@
                         android:layout_marginBottom="8dp"
                         android:background="@drawable/bg_opcao_inativa"
                         android:orientation="horizontal"
-                        android:padding="12dp">
+                        android:padding="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="Opção: Atualizar meu endereço padrão">
 
                         <View
                             android:id="@+id/radioAtualizar"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:layout_marginTop="2dp"
-                            android:background="@drawable/radio_inativo" />
+                            android:background="@drawable/radio_inativo"
+                            android:importantForAccessibility="no" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -248,7 +260,8 @@
                         android:layout_height="0.5dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="14dp"
-                        android:background="@color/borda_card" />
+                        android:background="@color/borda_card"
+                        android:importantForAccessibility="no" />
 
                     <!-- Formulário (opção 2 e 3) -->
                     <LinearLayout
@@ -284,7 +297,8 @@
                                 android:layout_marginEnd="8dp"
                                 android:text="ℹ"
                                 android:textColor="#B59A00"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:importantForAccessibility="no" />
 
                             <TextView
                                 android:layout_width="0dp"
@@ -308,7 +322,8 @@
                             android:padding="11dp"
                             android:textSize="13sp"
                             android:textColor="@color/texto_principal"
-                            android:textColorHint="@color/verde_medio" />
+                            android:textColorHint="@color/verde_medio"
+                            android:contentDescription="Campo CEP" />
 
                         <EditText
                             android:id="@+id/etRua"
@@ -321,7 +336,8 @@
                             android:padding="11dp"
                             android:textSize="13sp"
                             android:textColor="@color/texto_principal"
-                            android:textColorHint="@color/verde_medio" />
+                            android:textColorHint="@color/verde_medio"
+                            android:contentDescription="Campo rua ou logradouro" />
 
                         <EditText
                             android:id="@+id/etNumero"
@@ -334,7 +350,8 @@
                             android:padding="11dp"
                             android:textSize="13sp"
                             android:textColor="@color/texto_principal"
-                            android:textColorHint="@color/verde_medio" />
+                            android:textColorHint="@color/verde_medio"
+                            android:contentDescription="Campo número" />
 
                         <EditText
                             android:id="@+id/etBairro"
@@ -347,7 +364,8 @@
                             android:padding="11dp"
                             android:textSize="13sp"
                             android:textColor="@color/texto_principal"
-                            android:textColorHint="@color/verde_medio" />
+                            android:textColorHint="@color/verde_medio"
+                            android:contentDescription="Campo bairro" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -367,7 +385,8 @@
                                 android:padding="11dp"
                                 android:textSize="13sp"
                                 android:textColor="@color/texto_principal"
-                                android:textColorHint="@color/verde_medio" />
+                                android:textColorHint="@color/verde_medio"
+                                android:contentDescription="Campo cidade" />
 
                             <EditText
                                 android:id="@+id/etEstado"
@@ -382,7 +401,8 @@
                                 android:padding="11dp"
                                 android:textSize="13sp"
                                 android:textColor="@color/texto_principal"
-                                android:textColorHint="@color/verde_medio" />
+                                android:textColorHint="@color/verde_medio"
+                                android:contentDescription="Campo estado, duas letras" />
                         </LinearLayout>
 
                         <EditText
@@ -396,7 +416,8 @@
                             android:padding="11dp"
                             android:textSize="13sp"
                             android:textColor="@color/texto_principal"
-                            android:textColorHint="@color/verde_medio" />
+                            android:textColorHint="@color/verde_medio"
+                            android:contentDescription="Campo complemento, opcional" />
 
                         <Button
                             android:id="@+id/btnCalcularFrete"
@@ -417,7 +438,8 @@
                             android:textColor="@color/texto_principal"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:accessibilityLiveRegion="polite" />
                     </LinearLayout>
 
                     <!-- Frete opção 1 -->
@@ -446,7 +468,8 @@
                             android:textColor="@color/texto_principal"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:accessibilityLiveRegion="polite" />
                     </LinearLayout>
 
                 </LinearLayout>

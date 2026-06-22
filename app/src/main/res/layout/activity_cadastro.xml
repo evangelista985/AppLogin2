@@ -28,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:padding="0dp"
                 app:srcCompat="@drawable/logo_escuro"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:contentDescription="Logo Pura Essência" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -66,7 +67,7 @@
                     android:textSize="10sp"
                     android:letterSpacing="0.15" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOME COMPLETO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <TextView android:id="@+id/tvLabelNome" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOME COMPLETO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextNome" />
                 <EditText
                     android:id="@+id/editTextNome"
                     android:layout_width="match_parent"
@@ -78,9 +79,10 @@
                     android:padding="14dp"
                     android:textColor="@color/texto_principal"
                     android:textColorHint="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:contentDescription="Campo nome completo" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-MAIL" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <TextView android:id="@+id/tvLabelEmail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-MAIL" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextEmail" />
                 <EditText
                     android:id="@+id/editTextEmail"
                     android:layout_width="match_parent"
@@ -92,9 +94,10 @@
                     android:padding="14dp"
                     android:textColor="@color/texto_principal"
                     android:textColorHint="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:contentDescription="Campo e-mail" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TELEFONE" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <TextView android:id="@+id/tvLabelTelefone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TELEFONE" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextTelefone" />
                 <EditText
                     android:id="@+id/editTextTelefone"
                     android:layout_width="match_parent"
@@ -106,9 +109,10 @@
                     android:padding="14dp"
                     android:textColor="@color/texto_principal"
                     android:textColorHint="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:contentDescription="Campo telefone" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CPF" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <TextView android:id="@+id/tvLabelCpf" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CPF" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextCpf" />
                 <EditText
                     android:id="@+id/editTextCpf"
                     android:layout_width="match_parent"
@@ -120,9 +124,10 @@
                     android:padding="14dp"
                     android:textColor="@color/texto_principal"
                     android:textColorHint="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:contentDescription="Campo CPF" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SENHA" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <TextView android:id="@+id/tvLabelSenha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SENHA" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextSenha" />
                 <EditText
                     android:id="@+id/editTextSenha"
                     android:layout_width="match_parent"
@@ -134,10 +139,11 @@
                     android:padding="14dp"
                     android:textColor="@color/texto_principal"
                     android:textColorHint="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:contentDescription="Campo senha" />
 
                 <!-- Divisor -->
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/borda_card" android:layout_marginBottom="18dp" />
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/borda_card" android:layout_marginBottom="18dp" android:importantForAccessibility="no" />
 
                 <!-- ── Seção: Endereço ── -->
                 <TextView
@@ -149,7 +155,7 @@
                     android:textSize="10sp"
                     android:letterSpacing="0.15" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CEP" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <TextView android:id="@+id/tvLabelCep" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CEP" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextCep" />
                 <EditText
                     android:id="@+id/editTextCep"
                     android:layout_width="match_parent"
@@ -162,9 +168,10 @@
                     android:padding="14dp"
                     android:textColor="@color/texto_principal"
                     android:textColorHint="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:contentDescription="Campo CEP" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RUA / LOGRADOURO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
+                <TextView android:id="@+id/tvLabelEndereco" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RUA / LOGRADOURO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextEndereco" />
                 <EditText
                     android:id="@+id/editTextEndereco"
                     android:layout_width="match_parent"
@@ -176,29 +183,30 @@
                     android:padding="14dp"
                     android:textColor="@color/texto_principal"
                     android:textColorHint="@color/texto_secundario"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:contentDescription="Campo rua ou logradouro" />
 
                 <!-- Número e Bairro lado a lado -->
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="14dp">
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NÚMERO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
-                        <EditText android:id="@+id/editTextNumero" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="123" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                        <TextView android:id="@+id/tvLabelNumero" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NÚMERO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextNumero" />
+                        <EditText android:id="@+id/editTextNumero" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="123" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" android:contentDescription="Campo número" />
                     </LinearLayout>
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BAIRRO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
-                        <EditText android:id="@+id/editTextBairro" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="Bairro" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                        <TextView android:id="@+id/tvLabelBairro" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BAIRRO" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextBairro" />
+                        <EditText android:id="@+id/editTextBairro" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="Bairro" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" android:contentDescription="Campo bairro" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- Cidade e Estado lado a lado -->
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="22dp">
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:orientation="vertical" android:layout_marginEnd="8dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CIDADE" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
-                        <EditText android:id="@+id/editTextCidade" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="Cidade" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                        <TextView android:id="@+id/tvLabelCidade" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CIDADE" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextCidade" />
+                        <EditText android:id="@+id/editTextCidade" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="Cidade" android:inputType="text" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" android:contentDescription="Campo cidade" />
                     </LinearLayout>
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UF" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" />
-                        <EditText android:id="@+id/editTextEstado" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="SP" android:inputType="text" android:maxLength="2" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" />
+                        <TextView android:id="@+id/tvLabelEstado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UF" android:textColor="@color/texto_badge" android:textSize="9sp" android:letterSpacing="0.1" android:layout_marginBottom="5dp" android:labelFor="@id/editTextEstado" />
+                        <EditText android:id="@+id/editTextEstado" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/fundo_input_branco" android:hint="SP" android:inputType="text" android:maxLength="2" android:padding="14dp" android:textColor="@color/texto_principal" android:textColorHint="@color/texto_secundario" android:textSize="14sp" android:contentDescription="Campo estado, duas letras" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -208,7 +216,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:indeterminateTint="@color/verde_escuro"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:contentDescription="Criando conta, aguarde" />
 
                 <Button
                     android:id="@+id/btnCadastro"
